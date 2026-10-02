@@ -3,11 +3,11 @@ import { businessConfig } from "@/config/business";
 import { listVehicles } from "@/server/repositories";
 
 const publicPaths = [
-  "/", "/about", "/contact", "/faq", "/locations", "/locations/lagos", "/locations/abuja",
+  "/", "/about", "/contact", "/faq", "/categories", "/services", "/locations", "/locations/lagos", "/locations/abuja",
   "/rentals", "/rentals/search", "/rentals/luxury", "/rentals/suv", "/rentals/sedan", "/rentals/executive",
-  "/rentals/airport", "/rentals/corporate", "/rentals/long-term", "/rentals/interstate", "/rentals/booking", "/rentals/policies",
+  "/rentals/airport", "/rentals/corporate", "/rentals/long-term", "/rentals/interstate", "/rentals/daily", "/rentals/booking", "/rentals/policies",
   "/cars", "/cars/luxury", "/cars/suv", "/cars/executive", "/cars/consultation", "/cars/sell-trade-in",
-  "/pickup", "/pickup/airport", "/pickup/chauffeur", "/pickup/corporate", "/pickup/events", "/pickup/interstate", "/pickup/booking",
+  "/pickup", "/pickup/airport", "/pickup/chauffeur", "/pickup/city-transfer", "/pickup/corporate", "/pickup/events", "/pickup/interstate", "/pickup/booking",
   "/testimonials", "/whatsapp", "/privacy", "/terms",
 ];
 

@@ -1,38 +1,40 @@
 export const primaryNavigation = [
+  { label: "Home", href: "/" },
   { label: "Rent a car", href: "/rentals" },
   { label: "Cars for sale", href: "/cars" },
-  { label: "Pickup & travel", href: "/pickup" },
-  { label: "Locations", href: "/locations" },
+  { label: "Categories", href: "/categories" },
   { label: "About", href: "/about" },
 ] as const;
 
 export const footerGroups = [
   {
-    title: "Company",
+    title: "Quick links",
     links: [
+      { label: "Home", href: "/" },
+      { label: "Cars for sale", href: "/cars" },
+      { label: "Categories", href: "/categories" },
+      { label: "Fleet & services", href: "/services" },
       { label: "About Olasco", href: "/about" },
-      { label: "Contact", href: "/contact" },
-      { label: "FAQs", href: "/faq" },
     ],
   },
   {
-    title: "Rent",
+    title: "Support",
     links: [
-      { label: "Rent a car", href: "/rentals" },
+      { label: "Contact", href: "/contact" },
+      { label: "Chat on WhatsApp", href: "/whatsapp" },
+      { label: "FAQs", href: "/faq" },
+      { label: "Rental policies", href: "/rentals/policies" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
+  {
+    title: "Rent & move",
+    links: [
       { label: "SUV rentals", href: "/rentals/suv" },
       { label: "Executive rentals", href: "/rentals/executive" },
-      { label: "Daily & long-term", href: "/rentals/long-term" },
-      { label: "Rental policies", href: "/rentals/policies" },
-    ],
-  },
-  {
-    title: "Buy & move",
-    links: [
-      { label: "Cars for sale", href: "/cars" },
-      { label: "Purchase consultation", href: "/cars/consultation" },
-      { label: "Sell / trade-in", href: "/cars/sell-trade-in" },
-      { label: "Pickup services", href: "/pickup" },
+      { label: "Airport pickup", href: "/pickup/airport" },
       { label: "Corporate & events", href: "/pickup/corporate" },
+      { label: "Interstate trips", href: "/pickup/interstate" },
     ],
   },
 ] as const;
