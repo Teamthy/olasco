@@ -11,6 +11,18 @@ export type WhatsAppContext =
   | "interstate"
   | "booking-follow-up";
 
+export function normalizePhone(phone: string) {
+  let normalizedPhone = phone.replace(/\D/g, "");
+  if (normalizedPhone.startsWith("0") && normalizedPhone.length === 11) normalizedPhone = `234${normalizedPhone.slice(1)}`;
+  return normalizedPhone;
+}
+
+/**
+ * Builds a click-to-chat link that opens the Olasco WhatsApp conversation directly.
+ * `https://wa.me/<number>` resolves to the same chat as the official
+ * `https://api.whatsapp.com/send?phone=<number>` deep link, and works on
+ * mobile (app) and desktop (WhatsApp Web / desktop app).
+ */
 export function createWhatsAppLink({
   phone = businessConfig.whatsappNumber,
   message,
@@ -18,11 +30,20 @@ export function createWhatsAppLink({
   phone?: string;
   message: string;
 }) {
-  let normalizedPhone = phone.replace(/\D/g, "");
-  if (normalizedPhone.startsWith("0") && normalizedPhone.length === 11) normalizedPhone = `234${normalizedPhone.slice(1)}`;
+  const normalizedPhone = normalizePhone(phone);
   const safeMessage = message.trim();
-  if (!normalizedPhone || !safeMessage) return "https://wa.me/";
+  if (!normalizedPhone) return "https://wa.me/";
+  if (!safeMessage) return `https://wa.me/${normalizedPhone}`;
   return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(safeMessage)}`;
+}
+
+/** Short greeting used by the global "Chat with Olasco" actions. */
+export const whatsAppGreeting =
+  "Hello Olasco Autos, I would like to make an enquiry about your car rental, vehicle sales and pickup services.";
+
+/** Reset the prefilled draft and open the direct Olasco chat. */
+export function createDirectChatLink(phone: string = businessConfig.whatsappNumber) {
+  return createWhatsAppLink({ phone, message: whatsAppGreeting });
 }
 
 export function formatJourneyDate(value?: string) {
@@ -40,6 +61,10 @@ export function formatJourneyDate(value?: string) {
 export function createContextMessage(context: WhatsAppContext, details: Record<string, string | undefined> = {}) {
   const value = (key: string, fallback = "Not specified") => details[key]?.trim() || fallback;
   const hello = "Hello Olasco Autos,";
+
+  // A plain "chat with us" tap should not read like a half-filled form.
+  const hasDetails = Object.values(details).some((entry) => entry?.trim());
+  if (!hasDetails) return whatsAppGreeting;
 
   if (context === "booking-follow-up") {
     return [

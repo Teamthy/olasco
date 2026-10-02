@@ -25,6 +25,8 @@ export default function PickupPage() {
         title={<>The journey around <span>the journey.</span></>}
         description="Airport pickup, city transfers, chauffeur requests, corporate and business trips, event and conference transport, and interstate itineraries — coordinated through one direct conversation."
         aside={<>Share the schedule, route, and group size. Olasco confirms coverage, vehicle capacity, timing, and pricing before acceptance.</>}
+        image="/images/airport-pickup.jpg"
+        imageAlt="Chauffeur loading suitcases into a sedan at airport arrivals"
         dark
       >
         <div className="hero-actions page-hero-actions">
@@ -46,7 +48,7 @@ export default function PickupPage() {
       </section>
       <section className="section section--ink pickup-process">
         <div className="container split-feature">
-          <div className="split-media"><Image src="/images/chauffeur-pickup.jpg" alt="Stock photograph illustrating a chauffeur arranging luggage beside a car" fill sizes="(max-width: 640px) 92vw, 48vw" /><span className="split-note">Editorial stock photo</span></div>
+          <div className="split-media"><Image src="/images/airport-pickup.jpg" alt="Chauffeur loading suitcases into a sedan at airport arrivals" fill quality={90} sizes="(max-width: 640px) 92vw, 48vw" /><span className="split-note">Airport arrivals</span></div>
           <div className="split-content split-content--light">
             <p className="eyebrow eyebrow--lime">SCHEDULE / ROUTE / CAPACITY</p>
             <h2>Good coordination begins before pickup.</h2>

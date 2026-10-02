@@ -8,7 +8,8 @@ The written brief is the available visual reference in this checkout; no separat
 - **Palette:** ink `#111311`, paper `#F4F3EF`, white `#FFFFFF`, muted stone `#777A74`, and a restrained electric-lime `#D8F36A` for primary actions and small signals only.
 - **Typography:** Manrope; large, tightly tracked editorial display type with calm, readable body copy and compact uppercase labels.
 - **Composition:** dark cinematic opening, light editorial sections, asymmetric photo-and-copy panels, spacious catalog rows, then a dark closing CTA. Avoid generic gradients, fake statistics, fake ratings, and unverified inventory.
-- **Photography:** real Pexels stock photographs are used as *representative editorial imagery only*. They are not presented as Olasco stock. No make/model, price, condition, or availability is attached to a stock photo. Actual vehicle listings stay empty until owner-approved records and photos are supplied.
+- **Photography:** high-resolution generated editorial photography is used as *placeholder imagery* until owner photographs arrive. Images are sharp, consistently graded, and never presented as a specific Olasco vehicle: no make/model, price, condition, or availability is attached to them. Actual vehicle listings stay empty until owner-approved records and photos are supplied. See [public/images/IMAGE-SOURCES.md](../public/images/IMAGE-SOURCES.md) for the replacement workflow.
+- **Contact and WhatsApp:** WhatsApp is the primary handoff everywhere. `Chat with Olasco` actions open the direct chat at `wa.me/2348151594253` (from `NEXT_PUBLIC_WHATSAPP_NUMBER`) with a short greeting, so the customer lands in the conversation and only has to tap send.
 - **Brand mark:** original OA monogram and Olasco Autos wordmark; replaceable with official artwork when supplied.
 
 ## 2. Sitemap and page families
@@ -89,7 +90,7 @@ One client-safe config reads `NEXT_PUBLIC_WHATSAPP_NUMBER` (defaulting to the nu
 ## 9. Implementation phases
 
 1. Architecture and content integrity (this document; owner-input checklist).
-2. Design tokens, OA mark, responsive shell, photo attribution.
+2. Design tokens, OA mark, responsive shell, photography sources.
 3. Conversion-focused homepage and service/location page templates.
 4. Data-backed rental and sales catalogs, filters, and detail routes (empty until approved data exists).
 5. Booking, purchase inquiry, pickup request, and contextual WhatsApp handoff.

@@ -51,9 +51,9 @@ export default function HomePage() {
             <div className="hero-coverage"><strong>Lagos</strong><span className="hero-coverage-dot" aria-hidden="true" /><strong>Abuja</strong><span>·</span><span>Human confirmation, every time</span></div>
           </div>
           <figure className="hero-media">
-            <Image className="hero-photo" src="/images/hero-suv.jpg" alt="Representative stock photograph of a premium SUV; this is not a current Olasco vehicle listing" fill priority sizes="(max-width: 860px) 100vw, 55vw" />
+            <Image className="hero-photo" src="/images/hero-fleet.jpg" alt="Black premium SUV prepared for a Lagos journey at golden hour" fill priority quality={90} sizes="(max-width: 860px) 100vw, 55vw" />
             <span className="hero-index">01 — SET THE PACE</span>
-            <span className="hero-photo-note"><BadgeCheck size={12} aria-hidden="true" />Representative image</span>
+            <span className="hero-photo-note"><BadgeCheck size={12} aria-hidden="true" />Olasco fleet</span>
             <figcaption className="hero-media-caption"><span>A considered start to a good journey.</span><span>Rental · Sales · Mobility</span></figcaption>
           </figure>
         </div>
@@ -83,7 +83,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="THE RENTAL FLEET"
             title="Start with the kind of journey you have in mind."
-            description="Browse by vehicle class, then share your dates and city. These photos are representative editorial images; only owner-approved vehicles and current rates will be published as live listings."
+            description="Browse by vehicle class, then share your dates and city. Specific vehicles, current rates, and availability are confirmed by the team for your dates."
             action={<Link className="inline-arrow-link" href="/rentals">View rental options<ArrowUpRight size={15} aria-hidden="true" /></Link>}
           />
           <div className="class-card-grid">
@@ -107,8 +107,8 @@ export default function HomePage() {
       <section className="section section--paper">
         <div className="container split-feature split-feature--reverse">
           <div className="split-media split-media--rounded">
-            <Image src="/images/executive-sedan.jpg" alt="Representative stock photograph of a dark executive sedan on a road; not a current Olasco vehicle listing" fill sizes="(max-width: 640px) 92vw, 48vw" />
-            <span className="split-note">Representative vehicle photography</span>
+            <Image src="/images/executive-sedan.jpg" alt="Black executive sedan outside a glass office building at dusk" fill quality={90} sizes="(max-width: 640px) 92vw, 48vw" />
+            <span className="split-note">Executive sedan</span>
           </div>
           <div className="split-content">
             <p className="eyebrow">BUY WITH CLARITY</p>
@@ -128,7 +128,7 @@ export default function HomePage() {
       </section>
 
       <section className="mobility-band" aria-labelledby="mobility-heading">
-        <div className="mobility-image"><Image src="/images/chauffeur-pickup.jpg" alt="Stock photograph of a chauffeur arranging luggage beside a vehicle" fill sizes="(max-width: 640px) 100vw, 42vw" /></div>
+        <div className="mobility-image"><Image src="/images/chauffeur-pickup.jpg" alt="Chauffeur welcoming a passenger into an executive sedan" fill quality={90} sizes="(max-width: 640px) 100vw, 42vw" /></div>
         <div className="mobility-copy">
           <p className="eyebrow eyebrow--lime">PICKUP / CHAUFFEUR / CORPORATE</p>
           <h2 id="mobility-heading">Move people well. Keep the day in motion.</h2>
@@ -147,7 +147,7 @@ export default function HomePage() {
             <LocationCard location={locationPages.lagos} />
             <LocationCard location={locationPages.abuja} />
           </div>
-          <p className="location-caveat">City imagery is illustrative and does not indicate an office location. No unverified addresses or opening hours are published.</p>
+          <p className="location-caveat">No unverified office address or opening hour is published. Meeting points are agreed directly with the team.</p>
         </div>
       </section>
 

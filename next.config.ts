@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["*.e2b.app", "localhost", "127.0.0.1"],
   images: {
     formats: ["image/avif", "image/webp"],
+    // Next 16 only serves qualities listed here; 90 keeps hero and vehicle
+    // photography crisp instead of the default 75.
+    qualities: [75, 90],
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1600],
     imageSizes: [32, 48, 64, 96, 128, 256, 384],
   },

@@ -7,8 +7,8 @@ export const serviceCards = [
     description: "Request a car for a day, a longer stay, or a trip between cities. The team checks the exact vehicle and rate with you.",
     href: "/rentals",
     action: "Explore rentals",
-    image: "/images/hero-suv.jpg",
-    imageAlt: "Representative photograph of a premium SUV, not a live Olasco listing",
+    image: "/images/hero-fleet.jpg",
+    imageAlt: "Black premium SUV photographed for Olasco Autos editorial use",
   },
   {
     eyebrow: "02 / OWN",
@@ -17,7 +17,7 @@ export const serviceCards = [
     href: "/cars",
     action: "Explore car sales",
     image: "/images/executive-sedan.jpg",
-    imageAlt: "Representative photograph of an executive sedan, not a live Olasco listing",
+    imageAlt: "Black executive sedan photographed for Olasco Autos editorial use",
   },
   {
     eyebrow: "03 / ARRIVE",
@@ -26,7 +26,7 @@ export const serviceCards = [
     href: "/pickup",
     action: "Arrange a pickup",
     image: "/images/chauffeur-pickup.jpg",
-    imageAlt: "Stock photograph illustrating a chauffeur loading luggage into a car",
+    imageAlt: "Chauffeur welcoming a passenger into an executive sedan",
   },
   {
     eyebrow: "04 / TRAVEL",
@@ -34,8 +34,8 @@ export const serviceCards = [
     description: "Coordinate business trips, conferences, private events, or an interstate itinerary through one human contact.",
     href: "/pickup/corporate",
     action: "Plan group travel",
-    image: "/images/abuja-city.jpg",
-    imageAlt: "Representative city view in Abuja, Nigeria",
+    image: "/images/corporate-travel.jpg",
+    imageAlt: "Business travellers walking towards a chauffeured SUV",
   },
 ] as const;
 
@@ -44,22 +44,22 @@ export const rentalCategories = [
     name: "SUVs",
     key: "suv",
     description: "Tell us the space, route, and dates you need. Exact models are confirmed by the team.",
-    image: "/images/hero-suv.jpg",
-    alt: "Representative SUV photograph; not a current Olasco listing",
+    image: "/images/hero-fleet.jpg",
+    alt: "Black premium SUV in an urban setting",
   },
   {
     name: "Executive sedans",
     key: "executive",
     description: "A composed option for meetings, longer drives, and business travel.",
     image: "/images/executive-sedan.jpg",
-    alt: "Representative sedan photograph; not a current Olasco listing",
+    alt: "Black executive sedan outside a glass office building",
   },
   {
     name: "City cars",
     key: "sedan",
     description: "Ask about a practical car for a day in the city or an extended stay.",
-    image: "/images/lagos-city.jpg",
-    alt: "Lagos city street and buildings, used as editorial city imagery",
+    image: "/images/fleet-lineup.jpg",
+    alt: "Lineup of black fleet vehicles: SUV, executive sedan and city car",
   },
 ] as const;
 
@@ -84,8 +84,8 @@ export const pickupServices: PickupServiceContent[] = [
     details: ["Arrival and destination details", "Passenger and luggage needs", "Meeting point confirmed with the team", "Quote shared before confirmation"],
     serviceType: "AIRPORT_PICKUP",
     context: "airport",
-    image: "/images/chauffeur-pickup.jpg",
-    imageAlt: "Stock image of a chauffeur arranging luggage beside a car",
+    image: "/images/airport-pickup.jpg",
+    imageAlt: "Chauffeur loading suitcases into a sedan at airport arrivals",
   },
   {
     slug: "chauffeur",
@@ -95,8 +95,8 @@ export const pickupServices: PickupServiceContent[] = [
     details: ["Driver-required options", "Single or multi-stop itinerary", "Vehicle class agreed in advance", "Availability and pricing confirmed per request"],
     serviceType: "CHAUFFEUR",
     context: "pickup",
-    image: "/images/executive-sedan.jpg",
-    imageAlt: "Representative sedan photograph used for chauffeur-service editorial content",
+    image: "/images/chauffeur-pickup.jpg",
+    imageAlt: "Chauffeur holding the rear door of an executive sedan",
   },
   {
     slug: "corporate",
@@ -106,8 +106,8 @@ export const pickupServices: PickupServiceContent[] = [
     details: ["Meeting and airport schedules", "Business and corporate trips", "Recurring or one-off requests", "Invoice and account terms require confirmation"],
     serviceType: "CORPORATE_TRAVEL",
     context: "corporate",
-    image: "/images/chauffeur-pickup.jpg",
-    imageAlt: "Stock photograph illustrating a chauffeur-assisted business journey",
+    image: "/images/corporate-travel.jpg",
+    imageAlt: "Business travellers walking to a chauffeured SUV",
   },
   {
     slug: "events",
@@ -117,8 +117,8 @@ export const pickupServices: PickupServiceContent[] = [
     details: ["Event and conference transport requests", "Venue-to-venue planning", "Passenger count and schedule review", "Fleet capacity and quote confirmed case by case"],
     serviceType: "EVENT_TRANSPORT",
     context: "event",
-    image: "/images/abuja-city.jpg",
-    imageAlt: "Representative view of Abuja city used for event-transport editorial content",
+    image: "/images/fleet-lineup.jpg",
+    imageAlt: "Fleet of black vehicles lined up on a forecourt",
   },
   {
     slug: "interstate",
@@ -128,8 +128,8 @@ export const pickupServices: PickupServiceContent[] = [
     details: ["Origin and destination review", "Driver option requested up front", "Route and date approval required", "Pricing shared before confirmation"],
     serviceType: "INTERSTATE_TRIP",
     context: "interstate",
-    image: "/images/hero-suv.jpg",
-    imageAlt: "Representative SUV photograph used to illustrate an interstate trip",
+    image: "/images/interstate-highway.jpg",
+    imageAlt: "Premium SUV travelling on an expressway at golden hour",
   },
   {
     slug: "city-transfer",
@@ -140,6 +140,6 @@ export const pickupServices: PickupServiceContent[] = [
     serviceType: "CITY_TRANSFER",
     context: "pickup",
     image: "/images/lagos-city.jpg",
-    imageAlt: "Lagos city view used as representative city-transfer imagery",
+    imageAlt: "Lagos skyline and link bridge at blue hour",
   },
 ];

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { businessConfig } from "@/config/business";
-import { createContextMessage, createWhatsAppLink } from "@/lib/whatsapp";
+import { createContextMessage, createWhatsAppLink, createDirectChatLink, whatsAppGreeting } from "@/lib/whatsapp";
 
 describe("WhatsApp handoff", () => {
   it("uses the configured Olasco number and encodes a contextual message", () => {
@@ -29,5 +29,25 @@ describe("WhatsApp handoff", () => {
     expect(message).toContain("SUV");
     expect(message).toContain("10 October 2026");
     expect(message).toContain("Ada Okafor");
+  });
+});
+
+describe("Chat with Olasco", () => {
+  it("opens the direct Olasco chat with a short greeting and no form placeholders", () => {
+    const url = createDirectChatLink();
+    expect(url).toBe(`https://wa.me/${businessConfig.whatsappNumber}?text=${encodeURIComponent(whatsAppGreeting)}`);
+    expect(url.startsWith("https://wa.me/2348151594253?text=")).toBe(true);
+    expect(decodeURIComponent(url)).not.toContain("Not specified");
+  });
+
+  it("uses the same greeting for a context action without details", () => {
+    expect(createContextMessage("general")).toBe(whatsAppGreeting);
+    expect(createContextMessage("rental", {})).toBe(whatsAppGreeting);
+  });
+
+  it("still builds a full message once journey details are supplied", () => {
+    const message = createContextMessage("rental", { vehicle: "SUV", location: "Lagos" });
+    expect(message).toContain("SUV");
+    expect(message).toContain("Lagos");
   });
 });

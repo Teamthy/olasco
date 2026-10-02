@@ -31,7 +31,7 @@ export const businessConfig = {
         process.env.NEXT_PUBLIC_LAGOS_MAPS_URL ||
         "https://www.google.com/maps/search/?api=1&query=Lagos%2C%20Nigeria",
       image: "/images/lagos-city.jpg",
-      imageAlt: "Aerial city view of Lagos, Nigeria",
+      imageAlt: "Lagos skyline and the Lekki-Ikoyi Link Bridge at blue hour",
     },
     abuja: {
       name: "Abuja" as CityLabel,
@@ -42,7 +42,7 @@ export const businessConfig = {
         process.env.NEXT_PUBLIC_ABUJA_MAPS_URL ||
         "https://www.google.com/maps/search/?api=1&query=Abuja%2C%20Nigeria",
       image: "/images/abuja-city.jpg",
-      imageAlt: "Abuja city view with the National Mosque and Millennium Tower",
+      imageAlt: "Aerial view of Abuja with the National Mosque and Aso Rock",
     },
   },
 } as const;

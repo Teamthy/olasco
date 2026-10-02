@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     title: "Olasco Autos — Mobility, made personal",
     description: "Car rental, vehicle sourcing, pickup and planned journeys in Lagos and Abuja.",
     url: businessConfig.publicUrl,
-    images: [{ url: "/images/hero-suv.jpg", width: 1200, height: 800, alt: "Representative Olasco Autos automotive photography" }],
+    images: [{ url: "/images/hero-fleet.jpg", width: 1152, height: 768, alt: "Olasco Autos fleet photography — premium SUV in Lagos, Nigeria" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Olasco Autos — Mobility, made personal",
     description: "Car rental, vehicle sourcing, pickup and planned journeys in Lagos and Abuja.",
-    images: ["/images/hero-suv.jpg"],
+    images: ["/images/hero-fleet.jpg"],
   },
   robots: { index: true, follow: true },
 };

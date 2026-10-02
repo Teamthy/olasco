@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { createContextMessage, createWhatsAppLink, type WhatsAppContext } from "@/lib/whatsapp";
+import { WhatsAppGlyph } from "@/components/whatsapp-glyph";
 import { buttonClass, type ButtonVariant } from "@/components/ui";
 
 export function WhatsAppLink({
@@ -29,9 +30,10 @@ export function WhatsAppLink({
       href={createWhatsAppLink({ message: content })}
       target="_blank"
       rel="noopener noreferrer"
+      data-whatsapp-chat="true"
       {...props}
     >
-      {icon === "whatsapp" ? <MessageCircle size={17} aria-hidden="true" /> : null}
+      {icon === "whatsapp" ? <WhatsAppGlyph size={17} /> : null}
       <span>{children}</span>
       {icon === "arrow" ? <ArrowUpRight size={16} aria-hidden="true" /> : null}
     </a>
