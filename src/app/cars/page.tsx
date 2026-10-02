@@ -31,6 +31,8 @@ export default async function CarsPage() {
         title={<>Find the right car.<br /><span>Then make it yours.</span></>}
         description="Looking for your next vehicle? Tell Olasco the model, class, budget, and city. The team will share verified current options and discuss inspection and handover details for the specific car."
         aside={<>No invented inventory, mileage, or asking prices. Only verified listings will be published here.</>}
+        image="/images/executive-sedan.jpg"
+        imageAlt="Black executive sedan outside a glass office building at dusk"
         dark
       >
         <div className="hero-actions page-hero-actions">

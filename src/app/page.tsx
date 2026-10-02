@@ -1,24 +1,106 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BadgeCheck, BriefcaseBusiness, CarFront, CircleDollarSign, Clock3, Handshake, Plane, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BadgeCheck,
+  CalendarClock,
+  CarFront,
+  Handshake,
+  Headphones,
+  MapPin,
+  Quote,
+  ShieldCheck,
+  Star,
+} from "lucide-react";
 import { businessConfig } from "@/config/business";
-import { serviceCards, rentalCategories, pickupServices } from "@/content/services";
 import { locationPages } from "@/content/locations";
-import { ServiceCard, VehicleClassCard } from "@/components/service-card";
-import { LocationCard } from "@/components/location-card";
+import { CarRail, type CarRailItem } from "@/components/car-rail";
 import { SectionHeading } from "@/components/section-heading";
-import { RentalSearch } from "@/components/rental-search";
 import { ButtonLink } from "@/components/ui";
 import { WhatsAppLink } from "@/components/whatsapp-link";
 
 export const metadata: Metadata = {
   title: "Car rental, car sales & mobility in Lagos and Abuja",
-  description: "Request daily or long-term car rental, verified vehicle options, airport pickup, chauffeur, corporate and event transport in Lagos or Abuja. Talk to Olasco on WhatsApp.",
+  description:
+    "Rent a car, arrange airport pickup or chauffeur travel, and find your next vehicle in Lagos and Abuja. Talk to Olasco Autos on WhatsApp.",
   alternates: { canonical: "/" },
 };
 
-const serviceIcons = [CarFront, CircleDollarSign, Plane, BriefcaseBusiness];
+const heroFeatures = [
+  { icon: Headphones, title: "Human handoff", text: "Every request reaches a real person on WhatsApp." },
+  { icon: CalendarClock, title: "Flexible rental", text: "Daily, extended, airport or interstate." },
+  { icon: BadgeCheck, title: "Quote before you commit", text: "Rates and terms confirmed in writing first." },
+  { icon: MapPin, title: "Lagos & Abuja", text: "Two city starts, one point of contact." },
+];
+
+const fleetBenefits = [
+  { icon: BadgeCheck, title: "Request in minutes", text: "A short form, then a reference by return." },
+  { icon: ShieldCheck, title: "Rates confirmed up front", text: "Ask for the full basis before you commit." },
+  { icon: MapPin, title: "Lagos & Abuja", text: "Pickup points agreed with the team." },
+  { icon: Handshake, title: "Chauffeur on request", text: "Ask for a driver on any rental or transfer." },
+];
+
+const popularClasses: CarRailItem[] = [
+  {
+    name: "SUV",
+    meta: "Space for the whole trip",
+    price: "Quote on request",
+    href: "/rentals/suv",
+    image: "/images/hero-fleet.jpg",
+    alt: "Black premium SUV prepared for a Lagos journey at golden hour",
+  },
+  {
+    name: "Executive sedan",
+    meta: "Composed business travel",
+    price: "Quote on request",
+    href: "/rentals/executive",
+    image: "/images/executive-sedan.jpg",
+    alt: "Black executive sedan outside a glass office building",
+  },
+  {
+    name: "City car",
+    meta: "Practical for a day in town",
+    price: "Quote on request",
+    href: "/rentals/sedan",
+    image: "/images/fleet-lineup.jpg",
+    alt: "Black SUV, executive sedan and compact city car parked together",
+  },
+  {
+    name: "Airport transfer",
+    meta: "Arrivals handled end to end",
+    price: "Quote on request",
+    href: "/pickup/airport",
+    image: "/images/airport-pickup.jpg",
+    alt: "Chauffeur loading suitcases into a sedan at airport arrivals",
+  },
+  {
+    name: "Chauffeur service",
+    meta: "A driver for the journey",
+    price: "Quote on request",
+    href: "/pickup/chauffeur",
+    image: "/images/chauffeur-pickup.jpg",
+    alt: "Chauffeur welcoming a passenger into an executive sedan",
+  },
+  {
+    name: "Interstate trip",
+    meta: "Route checked before you go",
+    price: "Quote on request",
+    href: "/pickup/interstate",
+    image: "/images/interstate-highway.jpg",
+    alt: "Premium SUV travelling on an expressway at golden hour",
+  },
+];
+
+const exploreCategories = [
+  { name: "Economy", note: "Everyday city driving", href: "/rentals/sedan", image: "/images/fleet-lineup.jpg", alt: "Compact city car parked on a quiet street" },
+  { name: "SUV", note: "Room for people and luggage", href: "/rentals/suv", image: "/images/hero-fleet.jpg", alt: "Black premium SUV at golden hour" },
+  { name: "Luxury", note: "Premium occasions", href: "/rentals/luxury", image: "/images/fleet-pair.jpg", alt: "Premium SUV and executive sedan side by side" },
+  { name: "Executive", note: "Business travel", href: "/rentals/executive", image: "/images/executive-sedan.jpg", alt: "Black executive sedan outside a glass office building" },
+  { name: "Corporate", note: "Teams and schedules", href: "/pickup/corporate", image: "/images/corporate-travel.jpg", alt: "Business travellers walking towards a chauffeured SUV" },
+  { name: "Events", note: "Group movement", href: "/pickup/events", image: "/images/abuja-city.jpg", alt: "Aerial view of Abuja with the National Mosque" },
+];
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -38,139 +120,306 @@ export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema).replace(/</g, "\\u003c") }} />
+
+      {/* ------------------------------------------------------------- hero */}
       <section className="hero">
+        <div className="hero-bg">
+          <Image src="/images/fleet-pair.jpg" alt="" fill priority quality={90} sizes="100vw" />
+        </div>
         <div className="container hero-inner">
           <div className="hero-copy">
-            <p className="eyebrow">OLASCO AUTOS / LAGOS & ABUJA</p>
-            <h1>Every journey, <span>considered.</span></h1>
-            <p className="hero-description">Car rental, vehicle sourcing, and planned journeys in Lagos and Abuja — brought together by one team that stays with you from request to confirmation.</p>
+            <p className="eyebrow">DRIVE YOUR NEXT STORY</p>
+            <h1>
+              Premium cars for <span>every journey</span>
+            </h1>
+            <p className="hero-description">
+              From city runs to airport arrivals and interstate trips, Olasco Autos matches you with the right vehicle in Lagos and Abuja —
+              then hands you to a real person who confirms the details.
+            </p>
             <div className="hero-actions">
-              <ButtonLink href="/rentals" variant="primary">Explore rentals<ArrowRight size={15} aria-hidden="true" /></ButtonLink>
-              <ButtonLink href="/cars" variant="text" className="hero-secondary">Find a car to own<ArrowUpRight size={15} aria-hidden="true" /></ButtonLink>
+              <ButtonLink href="/rentals/booking" variant="primary">
+                Book your car
+                <ArrowRight size={16} aria-hidden="true" />
+              </ButtonLink>
+              <ButtonLink href="/rentals" variant="outline" className="hero-secondary">
+                Explore fleet
+              </ButtonLink>
             </div>
-            <div className="hero-coverage"><strong>Lagos</strong><span className="hero-coverage-dot" aria-hidden="true" /><strong>Abuja</strong><span>·</span><span>Human confirmation, every time</span></div>
           </div>
-          <figure className="hero-media">
-            <Image className="hero-photo" src="/images/hero-suv.jpg" alt="Representative stock photograph of a premium SUV; this is not a current Olasco vehicle listing" fill priority sizes="(max-width: 860px) 100vw, 55vw" />
-            <span className="hero-index">01 — SET THE PACE</span>
-            <span className="hero-photo-note"><BadgeCheck size={12} aria-hidden="true" />Representative image</span>
-            <figcaption className="hero-media-caption"><span>A considered start to a good journey.</span><span>Rental · Sales · Mobility</span></figcaption>
-          </figure>
+
+          <div className="hero-features">
+            {heroFeatures.map(({ icon: Icon, title, text }) => (
+              <div className="hero-feature" key={title}>
+                <span className="hero-feature-icon" aria-hidden="true">
+                  <Icon size={19} />
+                </span>
+                <span>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="service-strip" aria-labelledby="service-selector-title">
+      {/* ------------------------------------------------------- our fleet */}
+      <section className="section section--white">
+        <div className="container split-feature">
+          <div className="split-content">
+            <p className="eyebrow">OUR FLEET</p>
+            <h2>
+              Find the perfect ride <span>for your journey</span>
+            </h2>
+            <p>
+              Choose the class that fits the trip — a compact car for the city, an SUV for the family, or an executive sedan for meetings.
+              Availability, rate, and requirements are confirmed by the team before anything is agreed.
+            </p>
+            <ButtonLink href="/categories" variant="secondary">
+              View all classes
+              <ArrowRight size={16} aria-hidden="true" />
+            </ButtonLink>
+            <ul className="feature-list feature-list--two-column">
+              {fleetBenefits.map(({ icon: Icon, title, text }) => (
+                <li key={title}>
+                  <span className="feature-chip" aria-hidden="true">
+                    <Icon size={18} />
+                  </span>
+                  <span>
+                    <strong>{title}</strong>
+                    <br />
+                    <small>{text}</small>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="split-media split-media--blob">
+            <Image
+              src="/images/hero-fleet.jpg"
+              alt="Black premium SUV prepared for a Lagos journey at golden hour"
+              fill
+              quality={90}
+              sizes="(max-width: 1000px) 92vw, 46vw"
+            />
+            <Link className="split-media-label" href="/rentals/suv">
+              SUV class
+              <span className="card-arrow" aria-hidden="true">
+                <ArrowUpRight size={16} />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- why choose */}
+      <section className="why-band">
+        <div className="container why-band-inner">
+          <div>
+            <p className="eyebrow eyebrow--lime">WHY CHOOSE US</p>
+            <h2>
+              More than a rental. <span>It’s a better drive.</span>
+            </h2>
+            <p>
+              Olasco focuses on the details that decide whether a journey works: the right vehicle for the route, a clear rate before you
+              commit, and a person who answers when plans change.
+            </p>
+            <ButtonLink href="/about" variant="primary">
+              Learn more
+              <ArrowRight size={16} aria-hidden="true" />
+            </ButtonLink>
+          </div>
+          <div className="why-band-media">
+            <Image
+              src="/images/executive-sedan.jpg"
+              alt="Black executive sedan outside a glass office building at dusk"
+              fill
+              quality={90}
+              sizes="(max-width: 1000px) 92vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* --------------------------------------------------- popular rentals */}
+      <section className="section section--paper">
         <div className="container">
-          <div className="service-strip-header">
-            <p className="eyebrow" id="service-selector-title">A better way to get moving</p>
-            <p>Choose your starting point. We’ll take it from there.</p>
-          </div>
-          <div className="service-selector">
-            {serviceCards.map((service, index) => {
-              const Icon = serviceIcons[index];
-              return <ServiceCard {...service} icon={<Icon key={`service-icon-${index}`} size={18} aria-hidden="true" />} key={service.href} />;
-            })}
+          <CarRail
+            eyebrow="POPULAR CLASSES"
+            title={
+              <>
+                Most requested <span>by our customers</span>
+              </>
+            }
+            description="These are the classes customers ask for most. Tell us your dates, route, and passenger needs — the team confirms the actual vehicle and current rate."
+            items={popularClasses}
+          />
+
+          <div className="cta-strip">
+            <div className="cta-strip-media">
+              <Image src="/images/interstate-highway.jpg" alt="" fill quality={90} sizes="(max-width: 860px) 0px, 50vw" />
+            </div>
+            <div className="cta-strip-inner">
+              <div className="cta-strip-copy">
+                <span className="cta-strip-icon" aria-hidden="true">
+                  <Quote size={22} />
+                </span>
+                <div>
+                  <h2>Ready to hit the road?</h2>
+                  <p>Send your dates and route, and Olasco will confirm what is available.</p>
+                </div>
+              </div>
+              <ButtonLink href="/rentals/booking" variant="primary">
+                Get started
+                <ArrowRight size={16} aria-hidden="true" />
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="search-section" aria-label="Rental availability search">
-        <div className="container"><RentalSearch /></div>
-      </section>
-
+      {/* -------------------------------------------------------- categories */}
       <section className="section section--white">
         <div className="container">
           <SectionHeading
-            eyebrow="THE RENTAL FLEET"
-            title="Start with the kind of journey you have in mind."
-            description="Browse by vehicle class, then share your dates and city. These photos are representative editorial images; only owner-approved vehicles and current rates will be published as live listings."
-            action={<Link className="inline-arrow-link" href="/rentals">View rental options<ArrowUpRight size={15} aria-hidden="true" /></Link>}
+            eyebrow="EXPLORE CATEGORY"
+            title={
+              <>
+                Explore by <span>category</span>
+              </>
+            }
+            description="Start with the kind of journey you have in mind, then share your dates and city with the team."
+            action={
+              <Link className="inline-arrow-link" href="/categories">
+                All categories
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+            }
           />
-          <div className="class-card-grid">
-            {rentalCategories.map((category, index) => <VehicleClassCard key={category.key} name={category.name} description={category.description} href={`/rentals/${category.key}`} image={category.image} alt={category.alt} label={`0${index + 1} / REQUEST A CLASS`} />)}
+          <div className="category-grid">
+            {exploreCategories.map((category) => (
+              <article className="category-card" key={category.name}>
+                <Link className="category-card-media" href={category.href} aria-label={`${category.name} — ${category.note}`} tabIndex={-1}>
+                  <Image src={category.image} alt={category.alt} fill quality={90} sizes="(max-width: 640px) 92vw, (max-width: 1000px) 45vw, 30vw" />
+                </Link>
+                <div className="category-card-body">
+                  <div>
+                    <h3>{category.name}</h3>
+                    <small>{category.note}</small>
+                  </div>
+                  <Link className="card-arrow card-arrow--dark" href={category.href} aria-label={`Open ${category.name}`}>
+                    <ArrowUpRight size={16} aria-hidden="true" />
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
-          <p className="catalog-disclaimer">Models, specifications, availability and rates are confirmed by Olasco. No sample car is presented as live inventory.</p>
         </div>
       </section>
 
-      <section className="section section--ink">
-        <div className="container">
-          <SectionHeading eyebrow="HOW IT WORKS" title="A useful first step. A person for the rest." description="The website helps you share the details that matter. Our team checks the operational details with you before anything is confirmed." dark />
-          <div className="process-grid">
-            <article className="process-item"><span className="process-item-index">01 / TELL US</span><h3>Share the journey.</h3><p>Choose a service, city, dates, route, and the kind of vehicle you have in mind.</p></article>
-            <article className="process-item"><span className="process-item-index">02 / WE CHECK</span><h3>Get clear answers.</h3><p>Olasco checks genuine availability, route coverage, current pricing, and the terms that apply.</p></article>
-            <article className="process-item"><span className="process-item-index">03 / CONNECT</span><h3>Continue with a human.</h3><p>Receive a request reference, then carry the details into WhatsApp to complete the conversation.</p></article>
-          </div>
-        </div>
-      </section>
-
+      {/* ------------------------------------------------------ testimonials */}
       <section className="section section--paper">
-        <div className="container split-feature split-feature--reverse">
-          <div className="split-media split-media--rounded">
-            <Image src="/images/executive-sedan.jpg" alt="Representative stock photograph of a dark executive sedan on a road; not a current Olasco vehicle listing" fill sizes="(max-width: 640px) 92vw, 48vw" />
-            <span className="split-note">Representative vehicle photography</span>
-          </div>
-          <div className="split-content">
-            <p className="eyebrow">BUY WITH CLARITY</p>
-            <h2>Your next car should come with the right conversation.</h2>
-            <p>Tell Olasco what you’re looking for — make, class, budget, and city. The team can share verified options and confirm inspection, documentation, payment, and handover details for the specific car.</p>
-            <ul className="feature-list">
-              <li><ShieldCheck size={15} aria-hidden="true" />Ask about a specific vehicle or get help choosing</li>
-              <li><Clock3 size={15} aria-hidden="true" />Arrange an inspection conversation with the team</li>
-              <li><Handshake size={15} aria-hidden="true" />Confirm price and handover terms before committing</li>
-            </ul>
-            <div className="hero-actions">
-              <ButtonLink href="/cars" variant="secondary">Explore cars for sale<ArrowUpRight size={15} aria-hidden="true" /></ButtonLink>
-              <WhatsAppLink context="purchase" variant="text" icon="none">Talk to a sales specialist<ArrowUpRight size={14} aria-hidden="true" /></WhatsAppLink>
+        <div className="container">
+          <SectionHeading
+            eyebrow="CUSTOMER STORIES"
+            title="What our customers say"
+            description="Real people, real journeys, real stories — published only with the customer's permission."
+          />
+          <div className="testimonial-grid">
+            <article className="testimonial-card">
+              <span className="testimonial-empty-icon" aria-hidden="true">
+                <Star size={22} />
+              </span>
+              <p className="testimonial-quote">
+                Approved customer reviews have not been supplied yet, so we don’t publish any. Olasco would rather show nothing than invent a
+                five-star story.
+              </p>
+              <p className="section-heading-description">
+                If you have travelled with Olasco and would like your experience published, send it in and the team will confirm permission
+                before it appears here.
+              </p>
+              <div className="confirmation-actions">
+                <WhatsAppLink context="general" variant="primary" icon="whatsapp">
+                  Share your experience
+                </WhatsAppLink>
+                <Link className="button button--outline" href="/testimonials">
+                  How we handle reviews
+                </Link>
+              </div>
+            </article>
+            <div className="testimonial-media">
+              <Image
+                src="/images/lagos-city.jpg"
+                alt="Lagos skyline and the Lekki-Ikoyi Link Bridge at blue hour"
+                fill
+                quality={90}
+                sizes="(max-width: 860px) 92vw, 40vw"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mobility-band" aria-labelledby="mobility-heading">
-        <div className="mobility-image"><Image src="/images/chauffeur-pickup.jpg" alt="Stock photograph of a chauffeur arranging luggage beside a vehicle" fill sizes="(max-width: 640px) 100vw, 42vw" /></div>
-        <div className="mobility-copy">
-          <p className="eyebrow eyebrow--lime">PICKUP / CHAUFFEUR / CORPORATE</p>
-          <h2 id="mobility-heading">Move people well. Keep the day in motion.</h2>
-          <p>From airport arrivals to a boardroom schedule, event shuttle, or interstate itinerary, share the route and timing. Olasco confirms which services and capacity can be arranged.</p>
-          <div className="mobility-links">
-            {pickupServices.slice(0, 5).map((service) => <Link className="mobility-link" key={service.slug} href={`/pickup/${service.slug}`}>{service.title.replace(/[.!]$/, "")}<ArrowUpRight size={14} aria-hidden="true" /></Link>)}
-            <Link className="mobility-link" href="/pickup/booking">Request a pickup<ArrowUpRight size={14} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
+      {/* ------------------------------------------------------------- cities */}
       <section className="section section--white">
         <div className="container">
-          <SectionHeading eyebrow="TWO CITIES, ONE CLEAR CONTACT" title="Choose the city you’re moving through." description="Olasco operates primarily in Lagos and Abuja. Exact office addresses, meeting points, opening hours, and route limits will be confirmed before a request is accepted." />
+          <SectionHeading
+            eyebrow="TWO CITIES, ONE CLEAR CONTACT"
+            title={
+              <>
+                Choose the city <span>you’re moving through</span>
+              </>
+            }
+            description="Olasco operates primarily in Lagos and Abuja. Exact meeting points and coverage are confirmed before a request is accepted."
+          />
           <div className="location-grid">
-            <LocationCard location={locationPages.lagos} />
-            <LocationCard location={locationPages.abuja} />
+            {Object.values(locationPages).map((location) => (
+              <article className="location-card" key={location.slug}>
+                <Image src={location.image} alt={location.imageAlt} fill quality={90} sizes="(max-width: 860px) 92vw, 45vw" />
+                <div className="location-card-content">
+                  <p className="eyebrow">{location.eyebrow}</p>
+                  <h3>{location.name}</h3>
+                  <p>{location.coverageNote}</p>
+                  <div className="location-card-actions">
+                    <Link href={`/locations/${location.slug}`}>
+                      <MapPin size={15} aria-hidden="true" />
+                      Explore {location.name}
+                    </Link>
+                    <Link href={`/rentals/booking?location=${location.name}`}>
+                      <CarFront size={15} aria-hidden="true" />
+                      Request a car
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-          <p className="location-caveat">City imagery is illustrative and does not indicate an office location. No unverified addresses or opening hours are published.</p>
         </div>
       </section>
 
-      <section className="section section--sand">
-        <div className="container">
-          <SectionHeading eyebrow="OUR PROMISE TO BE STRAIGHT WITH YOU" title="Real details before big promises." description="A request reference and direct access to a person make it easier to ask the right questions. We only publish claims and customer stories Olasco can verify." />
-          <div className="trust-grid">
-            <article className="trust-item"><span>01 / FACTS</span><h3>No invented fleet or rates.</h3><p>Vehicle photos, specifications, current availability, and prices belong to the specific verified listing — not a sample card.</p></article>
-            <article className="trust-item"><span>02 / TERMS</span><h3>Know what needs confirming.</h3><p>Rental requirements, deposits, delivery fees, route eligibility, and sales handover terms are discussed before confirmation.</p></article>
-            <article className="trust-item"><span>03 / PEOPLE</span><h3>Keep a human in the loop.</h3><p>Online forms capture context; WhatsApp is there for the representative who can confirm the next step.</p></article>
-          </div>
-          <div className="story-note">
-            <div><p className="eyebrow">CUSTOMER STORIES</p><h3>We don’t make up five stars.</h3></div>
-            <p>Approved testimonials, ratings, and awards have not yet been supplied. When real customer stories are ready and publication permission is confirmed, they can appear here.</p>
-            <Link href="/testimonials">About customer stories<ArrowUpRight size={14} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
+      {/* --------------------------------------------------------- final CTA */}
       <section className="cta-banner">
         <div className="container cta-banner-inner">
-          <div><p className="eyebrow">READY WHEN YOU ARE</p><h2>Tell us where the road is taking you.</h2><p>Rental, vehicle purchase, airport pickup, business travel, or something in between — start with a request and continue with Olasco directly.</p></div>
-          <div className="cta-actions"><ButtonLink href="/rentals/booking" variant="primary">Make a rental request<ArrowUpRight size={15} aria-hidden="true" /></ButtonLink><WhatsAppLink context="general" variant="text" className="cta-secondary" icon="whatsapp">Chat on WhatsApp</WhatsAppLink></div>
+          <div>
+            <p className="eyebrow eyebrow--lime">READY WHEN YOU ARE</p>
+            <h2>
+              Tell us where the road is <span>taking you.</span>
+            </h2>
+            <p>
+              Rental, vehicle purchase, airport pickup, business travel, or something in between — start with a request and continue with
+              Olasco directly.
+            </p>
+          </div>
+          <div className="cta-actions">
+            <ButtonLink href="/rentals/booking" variant="primary">
+              Make a booking request
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </ButtonLink>
+            <WhatsAppLink context="general" variant="outline" className="cta-secondary" icon="whatsapp">
+              Chat on WhatsApp
+            </WhatsAppLink>
+          </div>
         </div>
       </section>
     </>

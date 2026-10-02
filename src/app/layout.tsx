@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/manrope";
+import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
 import { businessConfig } from "@/config/business";
 import { MobileActionBar } from "@/components/mobile-action-bar";
@@ -18,22 +18,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: businessConfig.name,
-    title: "Olasco Autos — Mobility, made personal",
+    title: "Olasco Autos — Premium cars for every journey",
     description: "Car rental, vehicle sourcing, pickup and planned journeys in Lagos and Abuja.",
     url: businessConfig.publicUrl,
-    images: [{ url: "/images/hero-suv.jpg", width: 1200, height: 800, alt: "Representative Olasco Autos automotive photography" }],
+    images: [{ url: "/images/hero-fleet.jpg", width: 1152, height: 768, alt: "Olasco Autos fleet photography — premium SUV in Lagos, Nigeria" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Olasco Autos — Mobility, made personal",
+    title: "Olasco Autos — Premium cars for every journey",
     description: "Car rental, vehicle sourcing, pickup and planned journeys in Lagos and Abuja.",
-    images: ["/images/hero-suv.jpg"],
+    images: ["/images/hero-fleet.jpg"],
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111311",
+  themeColor: "#0b1117",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,

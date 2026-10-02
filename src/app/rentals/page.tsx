@@ -33,6 +33,8 @@ export default async function RentalsPage() {
         title={<>A better start <span>to the road ahead.</span></>}
         description="Request a car for the day, a longer stay, or a route between cities. Olasco checks the actual vehicle, price, requirements, and availability with you before anything is confirmed."
         aside={<>No sample listings. No checkout payment. A request reference and a real person for the next step.</>}
+        image="/images/fleet-pair.jpg"
+        imageAlt="Premium SUV and executive sedan from the Olasco fleet on a Lagos boulevard"
         dark
       >
         <div className="hero-actions page-hero-actions">

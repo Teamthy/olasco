@@ -2,13 +2,13 @@
 
 A mobile-first, request-led website for Olasco Autos in Lagos and Abuja. The platform brings rental discovery, car-sales enquiries, pickup/chauffeur/corporate/event/interstate requests, central WhatsApp handoff, and PostgreSQL-backed intake into one reusable Next.js application.
 
-**Important:** this is a request platform, not an online payment or instant-reservation system. A request is not confirmed until the Olasco team checks and confirms availability, rate, requirements, and terms. Vehicle listings stay empty until verified inventory is entered; generic Pexels imagery is disclosed as representative editorial photography and is not Olasco inventory.
+**Important:** this is a request platform, not an online payment or instant-reservation system. A request is not confirmed until the Olasco team checks and confirms availability, rate, requirements, and terms. Vehicle listings stay empty until verified inventory is entered; the editorial photography in `public/images` is generated placeholder imagery and is not a record of Olasco inventory.
 
 ## Product and design documentation
 
 - [Architecture, sitemap, data model, API/component design, flows, responsive strategy, and phases](docs/ARCHITECTURE.md)
 - [Owner information and approvals required before launch](docs/OWNER-INPUTS.md)
-- [Editorial image sources and disclosure](public/images/IMAGE-SOURCES.md)
+- [Editorial image sources and replacement guide](public/images/IMAGE-SOURCES.md)
 
 ## Stack
 

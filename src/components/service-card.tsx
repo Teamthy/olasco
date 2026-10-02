@@ -47,8 +47,9 @@ export function VehicleClassCard({
   return (
     <article className="class-card">
       <Link className="class-card-media" href={href} aria-label={`Explore ${name}`}>
-        <Image src={image} alt={alt} fill sizes="(max-width: 640px) 40vw, (max-width: 900px) 45vw, 30vw" />
-        <span className="class-card-photo-note">Representative image</span>
+        <Image src={image} alt={alt} fill sizes="(max-width: 640px) 40vw, (max-width: 900px) 45vw, 30vw"
+          quality={90} />
+        <span className="class-card-photo-note">Fleet photography</span>
       </Link>
       <div className="class-card-body">
         <p className="eyebrow">{label}</p>

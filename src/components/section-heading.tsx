@@ -9,7 +9,7 @@ export function SectionHeading({
   dark = false,
 }: {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   action?: ReactNode;
   align?: "left" | "center" | "split";

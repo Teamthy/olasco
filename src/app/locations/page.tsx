@@ -15,11 +15,14 @@ export const metadata: Metadata = {
 export default function LocationsPage() {
   return (
     <>
-      <PageHero eyebrow="LOCATIONS / NIGERIA" title={<>One contact. <span>Two city starts.</span></>} description="Olasco Autos operates primarily in Lagos and Abuja. Tell us where your trip begins; the team will confirm whether your pickup point, destination, and service can be covered." aside="Office addresses, business hours, and exact coverage areas have not been supplied, so they are not guessed or mapped as Olasco premises." />
+      <PageHero eyebrow="LOCATIONS / NIGERIA" title={<>One contact. <span>Two city starts.</span></>} description="Olasco Autos operates primarily in Lagos and Abuja. Tell us where your trip begins; the team will confirm whether your pickup point, destination, and service can be covered."
+        image="/images/fleet-lineup.jpg"
+        imageAlt="Black SUV, executive sedan and compact city car parked together"
+        aside="Office addresses, business hours, and exact coverage areas have not been supplied, so they are not guessed or mapped as Olasco premises." />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Locations" }]} />
       <section className="section section--white">
         <div className="container">
-          <SectionHeading eyebrow="CITY SERVICE AREAS" title="Choose the city your journey starts in." description="City photography is representative context, not an address or office pin. Use the city map to explore the wider area; ask Olasco to confirm an exact meeting point." />
+          <SectionHeading eyebrow="CITY SERVICE AREAS" title="Choose the city your journey starts in." description="Use the city map to explore the wider area, then ask Olasco to confirm an exact meeting point for your dates." />
           <div className="location-grid"><LocationCard location={locationPages.lagos} /><LocationCard location={locationPages.abuja} /></div>
         </div>
       </section>
