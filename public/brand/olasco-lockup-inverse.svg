@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 56" role="img" aria-labelledby="title">
+  <title id="title">Olasco Autos</title>
+  <g transform="translate(3 4)">
+    <path d="M4.5 41 20.6 9.7c1-1.9 2.5-2.9 4.8-2.9s3.8 1 4.8 2.9L46.5 41h-9.4L25.4 19.3 13.8 41H4.5Z" fill="#b9f23a" />
+    <path d="M18.5 31.5h13.8m0 0-4.6-3.2m4.6 3.2-4.6 3.2" fill="none" stroke="#071722" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" />
+  </g>
+  <text x="64" y="29" fill="#ffffff" font-family="Manrope, Arial, sans-serif" font-size="21" font-weight="800" letter-spacing="-0.7">OLASCO</text>
+  <text x="65" y="45" fill="#b9f23a" font-family="Manrope, Arial, sans-serif" font-size="9" font-weight="800" letter-spacing="2.2">AUTOS</text>
+</svg>

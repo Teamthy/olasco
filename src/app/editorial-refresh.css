@@ -1,0 +1,1869 @@
+/*
+ * Olasco Autos — editorial refresh
+ * Built to follow the supplied premium-car reference: cinematic photography,
+ * crisp paper sections, restrained lime details, and touch-friendly layouts.
+ */
+
+:root {
+  --lime: #b9f23a;
+  --lime-dark: #a8df2b;
+  --lime-tint: #f0f8df;
+  --green: #5f8e2b;
+  --ink: #071722;
+  --ink-2: #10232f;
+  --ink-3: #20323d;
+  --paper: #f5f7f6;
+  --stone: #66727c;
+  --line: #e4e9e7;
+  --line-strong: #cfd8d4;
+  --shadow-card: 0 8px 24px rgba(7, 23, 34, 0.065);
+  --shadow-lift: 0 18px 40px rgba(7, 23, 34, 0.12);
+  --shadow-pill: 0 6px 16px rgba(185, 242, 58, 0.2);
+  --r-xl: 22px;
+  --r-lg: 16px;
+  --r-md: 12px;
+  --font-sans: "Manrope Variable", "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+}
+
+.button--primary {
+  box-shadow: none;
+  font-weight: 750;
+}
+
+.button--primary:hover {
+  box-shadow: 0 7px 18px rgba(185, 242, 58, 0.22);
+}
+
+/* Home navigation sits directly over the photograph, like the reference. */
+body:has(.home-page) .site-header {
+  border: 0;
+  background: linear-gradient(180deg, rgba(3, 14, 22, 0.48), transparent);
+}
+
+body:has(.home-page) .header-inner {
+  width: min(calc(100% - 160px), var(--container));
+  min-height: 86px;
+  margin-inline: auto;
+}
+
+.brand-wordmark strong {
+  letter-spacing: -0.035em;
+}
+
+.brand-wordmark small {
+  letter-spacing: 0.22em;
+}
+
+.header-book {
+  min-height: 44px !important;
+  box-shadow: none !important;
+}
+
+.home-page .hero {
+  min-height: clamp(650px, 78svh, 760px);
+}
+
+.home-page .hero-bg img {
+  object-position: 62% 74%;
+}
+
+.home-page .hero-bg::after {
+  background:
+    linear-gradient(90deg, rgba(4, 15, 23, 0.93) 0%, rgba(4, 15, 23, 0.82) 33%, rgba(4, 15, 23, 0.42) 62%, rgba(4, 15, 23, 0.1) 100%),
+    linear-gradient(0deg, rgba(4, 15, 23, 0.86) 0%, rgba(4, 15, 23, 0.12) 46%, rgba(4, 15, 23, 0.18) 100%);
+}
+
+.home-page .hero-inner {
+  min-height: inherit;
+  justify-content: space-between;
+  gap: 32px;
+  padding-block: 128px 28px;
+}
+
+.home-page .hero-copy {
+  max-width: 610px;
+  padding-top: 22px;
+}
+
+.home-page .hero h1 {
+  max-width: 620px;
+  font-size: clamp(3.2rem, 5vw, 4.45rem);
+  line-height: 1.035;
+  letter-spacing: -0.055em;
+}
+
+.home-page .hero-description {
+  max-width: 460px;
+  margin-block: 20px 27px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.home-page .hero-actions {
+  gap: 13px;
+}
+
+.home-page .hero-actions .button {
+  min-height: 50px;
+  padding-inline: 23px;
+  font-size: 13px;
+}
+
+.home-page .hero-actions .button--primary {
+  gap: 11px;
+  padding-inline: 12px 24px;
+}
+
+.home-page .hero-button-arrow {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--lime);
+}
+
+.home-page .hero-actions .hero-secondary {
+  border-color: rgba(255, 255, 255, 0.48);
+  background: rgba(7, 23, 34, 0.16);
+  color: #fff !important;
+  backdrop-filter: blur(5px);
+}
+
+.home-page .hero-actions .hero-secondary:hover {
+  border-color: var(--lime);
+  background: rgba(7, 23, 34, 0.5);
+  color: var(--lime) !important;
+}
+
+
+
+
+
+
+
+/* White editorial fleet section and straight-edged lime photo accent. */
+.home-fleet-section {
+  background: #fff;
+}
+
+.home-fleet-section .split-feature {
+  gap: clamp(42px, 6.5vw, 88px);
+}
+
+.home-fleet-section .split-content h2 {
+  max-width: 500px;
+  font-size: clamp(2.15rem, 3.5vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.home-fleet-section .split-content > p:not(.eyebrow) {
+  max-width: 500px;
+  margin-block: 16px 23px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.home-fleet-section .feature-list {
+  gap: 20px 22px;
+  margin-top: 28px;
+}
+
+.home-fleet-section .feature-list li {
+  gap: 11px;
+  font-size: 13px;
+}
+
+.home-fleet-section .feature-list li small {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.home-fleet-section .feature-chip {
+  width: 38px;
+  height: 38px;
+  background: #f0f7e5;
+}
+
+.home-fleet-media {
+  height: clamp(360px, 40vw, 470px);
+  min-height: 0;
+}
+
+.home-fleet-media::before {
+  right: -1%;
+  bottom: 0;
+  width: 51%;
+  height: 60%;
+  border-radius: 13px;
+  background: var(--lime);
+  transform: rotate(7deg);
+}
+
+.home-fleet-media img {
+  border-radius: 15px;
+  box-shadow: 0 15px 32px rgba(7, 23, 34, 0.1);
+  transform: rotate(-2.5deg) scale(0.97);
+  object-position: 53% 54%;
+}
+
+.home-fleet-media .split-media-label {
+  right: 3%;
+  bottom: 3%;
+  padding: 8px 9px 8px 15px;
+  font-size: 12px;
+}
+
+.home-fleet-media .split-media-label .card-arrow {
+  width: 34px;
+  height: 34px;
+}
+
+/* Scenic story band, with a quieter contrast and tighter proportions. */
+.home-why-band {
+  min-height: 315px;
+}
+
+.home-why-band .why-band-bg img {
+  object-position: 61% 56%;
+}
+
+.home-why-band .why-band-bg::after {
+  background:
+    linear-gradient(90deg, rgba(4, 15, 23, 0.97) 0%, rgba(4, 15, 23, 0.86) 36%, rgba(4, 15, 23, 0.4) 68%, rgba(4, 15, 23, 0.12) 100%),
+    linear-gradient(0deg, rgba(4, 15, 23, 0.32), transparent 70%);
+}
+
+.home-why-band .why-band-inner {
+  min-height: 315px;
+  padding-block: 46px;
+}
+
+.home-why-band .why-band-copy {
+  max-width: 520px;
+}
+
+.home-why-band h2 {
+  font-size: clamp(2.05rem, 3.2vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.home-why-band p:not(.eyebrow) {
+  max-width: 465px;
+  margin-block: 14px 21px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.home-why-band .button {
+  min-height: 46px;
+  padding-inline: 21px;
+  font-size: 13px;
+}
+
+/* Four compact, image-led rental cards and the wide road-trip callout. */
+.home-rentals-section {
+  background: #f5f7f6;
+}
+
+.home-rentals-section .car-rail-section {
+  margin-bottom: 40px;
+}
+
+.home-rentals-section .car-rail-head {
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 25px;
+}
+
+.home-rentals-section .car-rail-head > div:first-child {
+  max-width: 670px;
+}
+
+.home-rentals-section .car-rail-head > div:first-child h2 {
+  font-size: clamp(1.95rem, 3.2vw, 2.65rem);
+}
+
+.home-rentals-section .car-rail-head .section-heading-description {
+  max-width: 520px;
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.home-rentals-section .car-rail {
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 17px;
+  padding-bottom: 3px;
+}
+
+.home-rentals-section .car-card {
+  border-radius: 12px;
+  background: var(--ink);
+  box-shadow: 0 5px 17px rgba(7, 23, 34, 0.1);
+}
+
+.home-rentals-section .car-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(7, 23, 34, 0.16);
+}
+
+.home-rentals-section .car-card-media {
+  aspect-ratio: 1.58 / 1;
+}
+
+.home-rentals-section .car-card-body {
+  min-height: 99px;
+  padding: 13px 14px 14px;
+}
+
+.home-rentals-section .car-card-name {
+  font-size: 14px;
+}
+
+.home-rentals-section .car-card-meta {
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+.home-rentals-section .car-card-price {
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.home-rentals-section .car-card .card-arrow {
+  width: 34px;
+  height: 34px;
+}
+
+.home-rentals-section .cta-strip {
+  min-height: 116px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  isolation: isolate;
+}
+
+.home-rentals-section .cta-strip-media {
+  width: 65%;
+}
+
+.home-rentals-section .cta-strip-media::after {
+  background: linear-gradient(90deg, var(--ink) 0%, rgba(7, 23, 34, 0.94) 19%, rgba(7, 23, 34, 0.42) 70%, rgba(7, 23, 34, 0.2) 100%);
+}
+
+.home-rentals-section .cta-strip-inner {
+  min-height: 116px;
+  padding: 21px 25px;
+}
+
+.home-rentals-section .cta-strip-icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(185, 242, 58, 0.45);
+  background: rgba(7, 23, 34, 0.54);
+}
+
+.home-rentals-section .cta-strip h2 {
+  font-size: 18px;
+}
+
+.home-rentals-section .cta-strip p {
+  font-size: 12px;
+}
+
+.home-rentals-section .cta-strip .button {
+  min-height: 44px;
+  padding-inline: 18px;
+  font-size: 12px;
+}
+
+/* Category tiles stay photographic and readable instead of over-decorated. */
+.home-categories-section {
+  background: #fff;
+}
+
+.home-categories-section .category-grid {
+  gap: 18px;
+}
+
+.home-categories-section .category-card {
+  border: 1px solid #edf0ee;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(7, 23, 34, 0.045);
+}
+
+.home-categories-section .category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(7, 23, 34, 0.09);
+}
+
+.home-categories-section .category-card-media {
+  aspect-ratio: 1.62 / 1;
+  background: #e9eeec;
+}
+
+.home-categories-section .category-card-body {
+  min-height: 70px;
+  padding: 12px 14px;
+}
+
+.home-categories-section .category-card-body h3 {
+  font-size: 14px;
+}
+
+.home-categories-section .category-card-body small {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.home-categories-section .category-card .card-arrow {
+  width: 34px;
+  height: 34px;
+}
+
+/* A transparent customer promise replaces an invented testimonial. */
+.home-customer-care-section {
+  background: #f5f7f6;
+}
+
+.home-customer-care-grid {
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+  gap: 22px;
+}
+
+.home-promise-card {
+  border: 1px solid #e9edeb;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(7, 23, 34, 0.045);
+}
+
+.home-promise-card h3 {
+  letter-spacing: -0.04em;
+}
+
+.home-promise-card .testimonial-quote {
+  font-weight: 400;
+}
+
+.home-customer-care-media {
+  min-height: 340px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Contact: direct contact choices, real-world image, and an accessible form. */
+.contact-hero {
+  overflow: hidden;
+  background: #f5f7f6;
+  color: var(--ink);
+}
+
+.contact-hero-inner {
+  grid-template-columns: minmax(0, 1.03fr) minmax(0, 0.97fr);
+  align-items: center;
+  gap: clamp(34px, 6vw, 76px);
+  min-height: 0;
+  padding-block: clamp(54px, 7vw, 88px);
+}
+
+.contact-hero-copy {
+  max-width: 620px;
+}
+
+.contact-hero-copy .eyebrow {
+  color: var(--green);
+}
+
+.contact-hero-copy h1 {
+  max-width: 590px;
+  color: var(--ink);
+  font-size: clamp(2.8rem, 5vw, 4.3rem);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+
+.contact-hero-copy h1 span {
+  color: var(--green);
+}
+
+.contact-hero-copy > p:not(.eyebrow) {
+  max-width: 520px;
+  margin-top: 18px;
+  color: #5f6c75;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.contact-hero-actions {
+  gap: 12px;
+  margin-top: 27px;
+}
+
+.contact-hero-actions .button {
+  min-height: 50px;
+  padding-inline: 21px;
+  font-size: 13px;
+}
+
+.contact-hero-call {
+  border-color: #d6dedb;
+  background: #fff;
+  color: var(--ink);
+}
+
+.contact-hero-call:hover {
+  border-color: var(--ink);
+  background: #fff;
+  color: var(--green);
+}
+
+.contact-hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin-top: 28px;
+  color: #5e6b74;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.contact-hero-proof span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-hero-proof svg {
+  color: var(--green);
+}
+
+.contact-hero-photo {
+  position: relative;
+  min-height: 380px;
+  aspect-ratio: 1.25 / 1;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #dce3e0;
+}
+
+.contact-hero-photo img {
+  object-fit: cover;
+  object-position: 52% 48%;
+}
+
+.contact-hero-photo::after {
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(0deg, rgba(4, 15, 23, 0.74), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.contact-hero-photo-caption {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  display: grid;
+  gap: 5px;
+  color: #fff;
+}
+
+.contact-hero-photo-caption span {
+  color: var(--lime);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.contact-hero-photo-caption strong {
+  max-width: 380px;
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.contact-main-section {
+  padding-block: clamp(56px, 7vw, 84px);
+  background: #fff;
+}
+
+.contact-main-section .section-heading {
+  margin-bottom: 31px;
+}
+
+.contact-main-section .section-heading h2 {
+  font-size: clamp(1.9rem, 3.3vw, 2.7rem);
+}
+
+.contact-main-section .section-heading-description {
+  max-width: 560px;
+  font-size: 14px;
+}
+
+.contact-layout {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 4vw, 54px);
+}
+
+.contact-column {
+  gap: 18px;
+}
+
+.contact-whatsapp-card {
+  gap: 15px;
+  padding: clamp(22px, 3vw, 30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: var(--ink);
+  box-shadow: none;
+}
+
+.contact-whatsapp-heading h2 {
+  font-size: 22px;
+}
+
+.contact-whatsapp-status {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.contact-whatsapp-card > p {
+  font-size: 13px;
+}
+
+.contact-whatsapp-button {
+  min-height: 48px;
+  font-size: 12px;
+}
+
+.contact-channel-grid {
+  gap: 12px;
+}
+
+.contact-channel-grid .contact-detail {
+  min-height: 112px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.contact-channel-grid .contact-detail-label {
+  font-size: 11px;
+}
+
+.contact-channel-grid .contact-detail strong {
+  font-size: 13px;
+}
+
+.contact-main-section .contact-block .eyebrow {
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+
+.contact-main-section .contact-service-list li {
+  min-height: 43px;
+  padding-block: 9px;
+  font-size: 13px;
+}
+
+.contact-main-section .contact-city-grid {
+  gap: 12px;
+}
+
+.contact-main-section .contact-city {
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f8faf9;
+}
+
+.contact-main-section .contact-city-head {
+  font-size: 13px;
+}
+
+.contact-main-section .contact-city p {
+  font-size: 12px;
+}
+
+.contact-main-section .contact-city a {
+  min-height: 30px;
+  font-size: 11px;
+}
+
+.contact-safety-note {
+  padding: 13px 15px;
+  font-size: 11px;
+}
+
+.contact-form-column .form-card {
+  padding: clamp(24px, 3.2vw, 36px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(7, 23, 34, 0.055);
+}
+
+.contact-form-column .form-card .eyebrow {
+  font-size: 10px;
+}
+
+.contact-form-column .form-card h2 {
+  font-size: clamp(22px, 2.4vw, 28px);
+}
+
+.contact-form-column .form-card-intro {
+  margin-bottom: 24px;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.contact-form-column .form-grid {
+  gap: 16px;
+}
+
+.contact-form-column .form-field label:not(.checkbox-row) {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.contact-form-column .form-field input,
+.contact-form-column .form-field textarea {
+  min-height: 49px;
+  padding-inline: 13px;
+  border: 1px solid #dce3e0;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.contact-form-column .form-field input:focus,
+.contact-form-column .form-field textarea:focus {
+  border-color: var(--green);
+  outline: 3px solid rgba(95, 142, 43, 0.14);
+}
+
+.contact-form-column .form-field textarea {
+  min-height: 125px;
+  padding-block: 12px;
+}
+
+.contact-form-column .checkbox-row {
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.contact-form-column .form-actions {
+  margin-top: 19px;
+  padding-top: 17px;
+}
+
+.contact-form-column .form-actions .button {
+  min-height: 48px;
+  padding-inline: 21px;
+  font-size: 13px;
+}
+
+.contact-form-note {
+  font-size: 12px;
+}
+
+/* Shared layout safeguards for narrower tablets and small phones. */
+@media (max-width: 1000px) {
+  body:has(.home-page) .header-inner {
+    width: min(calc(100% - clamp(96px, 15vw, 150px)), var(--container));
+  }
+}
+
+@media (max-width: 860px) {
+  body:has(.home-page) .header-inner {
+    width: min(calc(100% - 48px), var(--container));
+  }
+}
+
+@media (max-width: 640px) {
+  body:has(.home-page) .header-inner {
+    width: min(calc(100% - 32px), var(--container));
+  }
+}
+
+@media (max-width: 1100px) {
+
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .contact-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .contact-whatsapp-card,
+  .contact-detail-grid,
+  .contact-main-section .contact-block:last-of-type,
+  .contact-safety-note {
+    grid-column: 1 / -1;
+  }
+
+  .contact-main-section .contact-block:nth-of-type(3) {
+    grid-column: 1;
+  }
+
+  .contact-main-section .contact-block:nth-of-type(4) {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 860px) {
+  body:has(.home-page) .header-inner {
+    min-height: 74px;
+  }
+
+  .home-page .hero {
+    min-height: 700px;
+  }
+
+  .home-page .hero-inner {
+    min-height: inherit;
+    padding-block: 110px 24px;
+  }
+
+
+
+
+
+  .home-fleet-section .split-feature {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .home-fleet-section .split-content {
+    max-width: 650px;
+  }
+
+  .home-fleet-media {
+    width: min(100%, 640px);
+    height: clamp(330px, 61vw, 460px);
+    justify-self: center;
+  }
+
+  .home-why-band,
+  .home-why-band .why-band-inner {
+    min-height: 305px;
+  }
+
+  .home-rentals-section .car-rail {
+    grid-auto-columns: minmax(260px, 44%);
+  }
+
+  .home-customer-care-grid {
+    grid-template-columns: 1fr 0.9fr;
+  }
+
+  .contact-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-block: 48px;
+  }
+
+  .contact-hero-copy {
+    max-width: 660px;
+  }
+
+  .contact-hero-photo {
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 1.75 / 1;
+  }
+
+  .page-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .page-hero-aside {
+    justify-self: start;
+    max-width: 560px;
+  }
+
+  .footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 34px;
+  }
+
+  .site-footer {
+    padding-bottom: 84px;
+  }
+
+  .footer-brand-column {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(calc(100% - 32px), var(--container));
+  }
+
+  .home-page .container {
+    width: min(calc(100% - 32px), var(--container));
+  }
+
+  .home-page .hero {
+    min-height: 0;
+  }
+
+  .home-page .hero-bg img {
+    object-position: 68% 72%;
+  }
+
+  .home-page .hero-bg::after {
+    background:
+      linear-gradient(180deg, rgba(4, 15, 23, 0.91) 0%, rgba(4, 15, 23, 0.84) 35%, rgba(4, 15, 23, 0.32) 69%, rgba(4, 15, 23, 0.82) 100%),
+      linear-gradient(90deg, rgba(4, 15, 23, 0.4), rgba(4, 15, 23, 0.05));
+  }
+
+  .home-page .hero-inner {
+    min-height: 0;
+    gap: 29px;
+    padding-block: 103px 18px;
+  }
+
+  .home-page .hero-copy {
+    max-width: 480px;
+    padding-top: 15px;
+  }
+
+  .home-page .hero .eyebrow {
+    margin-bottom: 13px;
+    font-size: 10px;
+  }
+
+  .home-page .hero h1 {
+    max-width: 385px;
+    font-size: clamp(2.7rem, 10vw, 3.45rem);
+    line-height: 1.02;
+  }
+
+  .home-page .hero-description {
+    max-width: 370px;
+    margin-block: 15px 20px;
+    font-size: 14px;
+    line-height: 1.68;
+  }
+
+  .home-page .hero-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.88fr);
+    gap: 9px;
+  }
+
+  .home-page .hero-actions .button {
+    min-height: 48px;
+    gap: 7px;
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+
+  .home-page .hero-actions .button--primary {
+    padding-inline: 9px 12px;
+  }
+
+  .home-page .hero-button-arrow {
+    width: 24px;
+    height: 24px;
+  }
+
+
+  .home-page .section {
+    padding-block: 52px;
+  }
+
+  .home-page .section-heading {
+    gap: 14px;
+    margin-bottom: 25px;
+  }
+
+  .home-page .section-heading h2,
+  .home-page .car-rail-head > div:first-child h2 {
+    font-size: clamp(1.75rem, 7vw, 2.2rem);
+    line-height: 1.12;
+  }
+
+  .home-page .section-heading-description,
+  .home-rentals-section .car-rail-head .section-heading-description {
+    max-width: 520px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .home-fleet-section .split-feature {
+    gap: 27px;
+  }
+
+  .home-fleet-section .split-content h2 {
+    font-size: clamp(1.9rem, 7.7vw, 2.35rem);
+  }
+
+  .home-fleet-section .split-content > p:not(.eyebrow) {
+    margin-block: 14px 19px;
+    font-size: 14px;
+  }
+
+  .home-fleet-section .feature-list {
+    gap: 18px 12px;
+    margin-top: 23px;
+  }
+
+  .home-fleet-section .feature-list li {
+    gap: 9px;
+    font-size: 12px;
+  }
+
+  .home-fleet-section .feature-list li small {
+    font-size: 11px;
+  }
+
+  .home-fleet-section .feature-chip {
+    width: 34px;
+    height: 34px;
+  }
+
+  .home-fleet-media {
+    width: calc(100% - 12px);
+    height: min(80vw, 370px);
+    min-height: 260px;
+  }
+
+  .home-fleet-media img {
+    transform: rotate(-2deg) scale(0.97);
+  }
+
+  .home-fleet-media .split-media-label {
+    right: 1%;
+    bottom: 1%;
+    gap: 8px;
+    padding: 6px 7px 6px 11px;
+    font-size: 11px;
+  }
+
+  .home-fleet-media .split-media-label .card-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .home-why-band,
+  .home-why-band .why-band-inner {
+    min-height: 0;
+  }
+
+  .home-why-band .why-band-bg img {
+    object-position: 65% 50%;
+  }
+
+  .home-why-band .why-band-bg::after {
+    background: linear-gradient(90deg, rgba(4, 15, 23, 0.96), rgba(4, 15, 23, 0.76) 68%, rgba(4, 15, 23, 0.4));
+  }
+
+  .home-why-band .why-band-inner {
+    min-height: 310px;
+    padding-block: 42px;
+  }
+
+  .home-why-band h2 {
+    font-size: clamp(1.9rem, 7vw, 2.3rem);
+  }
+
+  .home-why-band p:not(.eyebrow) {
+    max-width: 390px;
+    font-size: 14px;
+  }
+
+  .home-rentals-section .car-rail-section {
+    margin-bottom: 30px;
+  }
+
+  .home-rentals-section .car-rail-head {
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 19px;
+  }
+
+  .home-rentals-section .car-rail {
+    grid-auto-columns: minmax(0, 82%);
+    gap: 12px;
+    margin-right: -16px;
+    padding-right: 16px;
+  }
+
+  .home-rentals-section .car-card-media {
+    aspect-ratio: 1.55 / 1;
+  }
+
+  .home-rentals-section .car-card-body {
+    min-height: 96px;
+    padding: 12px 13px;
+  }
+
+  .home-rentals-section .car-card-name {
+    font-size: 14px;
+  }
+
+  .home-rentals-section .car-card-meta {
+    font-size: 11px;
+  }
+
+  .home-rentals-section .car-card-price {
+    font-size: 12px;
+  }
+
+  .home-rentals-section .cta-strip-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 0;
+    padding: 19px;
+  }
+
+  .home-rentals-section .cta-strip-media {
+    display: block;
+    width: 100%;
+    opacity: 0.66;
+  }
+
+  .home-rentals-section .cta-strip-media::after {
+    background: linear-gradient(90deg, rgba(7, 23, 34, 0.92), rgba(7, 23, 34, 0.62));
+  }
+
+  .home-rentals-section .cta-strip-copy {
+    flex-direction: row;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .home-rentals-section .cta-strip-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-rentals-section .cta-strip h2 {
+    font-size: 16px;
+  }
+
+  .home-rentals-section .cta-strip p {
+    max-width: 285px;
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .home-rentals-section .cta-strip .button {
+    align-self: flex-start;
+    min-height: 44px;
+    margin-left: 51px;
+  }
+
+  .home-categories-section .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .home-categories-section .category-card {
+    border-radius: 10px;
+  }
+
+  .home-categories-section .category-card-media {
+    aspect-ratio: 1.18 / 1;
+  }
+
+  .home-categories-section .category-card-body {
+    min-height: 68px;
+    gap: 6px;
+    padding: 9px 9px;
+  }
+
+  .home-categories-section .category-card-body h3 {
+    font-size: 12px;
+  }
+
+  .home-categories-section .category-card-body small {
+    max-width: 135px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .home-categories-section .category-card .card-arrow {
+    width: 29px;
+    height: 29px;
+  }
+
+  .home-categories-section .category-card .card-arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .home-customer-care-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .home-promise-card {
+    padding: 24px 20px;
+  }
+
+  .home-promise-card h3 {
+    margin-top: 17px;
+    font-size: 1.45rem;
+  }
+
+  .home-promise-card .testimonial-quote {
+    font-size: 13px;
+  }
+
+  .home-review-note {
+    font-size: 11px;
+  }
+
+  .home-customer-care-media {
+    min-height: 240px;
+  }
+
+  .contact-hero-inner {
+    gap: 24px;
+    padding-block: 37px 44px;
+  }
+
+  .contact-hero-copy h1 {
+    max-width: 440px;
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .contact-hero-copy > p:not(.eyebrow) {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .contact-hero-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+    gap: 9px;
+    margin-top: 21px;
+  }
+
+  .contact-hero-actions .button {
+    min-height: 48px;
+    gap: 7px;
+    padding-inline: 10px;
+    font-size: 11px;
+  }
+
+  .contact-hero-proof {
+    gap: 10px 15px;
+    margin-top: 19px;
+    font-size: 11px;
+  }
+
+  .contact-hero-proof span {
+    gap: 6px;
+  }
+
+  .contact-hero-photo {
+    aspect-ratio: 1.4 / 1;
+  }
+
+  .contact-hero-photo-caption {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+  }
+
+  .contact-hero-photo-caption strong {
+    font-size: 15px;
+  }
+
+  .contact-main-section {
+    padding-block: 47px 56px;
+  }
+
+  .contact-main-section .section-heading {
+    gap: 13px;
+    margin-bottom: 24px;
+  }
+
+  .contact-main-section .section-heading h2 {
+    font-size: 1.85rem;
+  }
+
+  .contact-main-section .section-heading-description {
+    font-size: 13px;
+  }
+
+  .contact-layout {
+    gap: 20px;
+  }
+
+  .contact-column {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .contact-whatsapp-card,
+  .contact-detail-grid,
+  .contact-main-section .contact-block,
+  .contact-main-section .contact-block:nth-of-type(3),
+  .contact-main-section .contact-block:nth-of-type(4),
+  .contact-safety-note {
+    grid-column: 1;
+  }
+
+  .contact-whatsapp-card {
+    gap: 13px;
+    padding: 20px 18px;
+  }
+
+  .contact-whatsapp-heading h2 {
+    font-size: 20px;
+  }
+
+  .contact-whatsapp-status {
+    font-size: 8px;
+  }
+
+  .contact-whatsapp-card > p {
+    font-size: 12px;
+  }
+
+  .contact-whatsapp-button {
+    width: 100%;
+  }
+
+  .contact-channel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-channel-grid .contact-detail {
+    min-height: 108px;
+    gap: 7px;
+    padding: 12px 10px;
+  }
+
+  .contact-channel-grid .contact-detail-label {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .contact-channel-grid .contact-detail strong {
+    font-size: 11px;
+  }
+
+  .contact-main-section .contact-city-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-main-section .contact-city {
+    gap: 8px;
+    padding: 13px 11px;
+  }
+
+  .contact-main-section .contact-city-head {
+    font-size: 12px;
+  }
+
+  .contact-main-section .contact-city p {
+    font-size: 11px;
+  }
+
+  .contact-main-section .contact-city a {
+    font-size: 10px;
+  }
+
+  .contact-form-column .form-card {
+    padding: 23px 18px;
+  }
+
+  .contact-form-column .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .contact-form-column .form-field label:not(.checkbox-row) {
+    font-size: 13px;
+  }
+
+  .contact-form-column .form-field input,
+  .contact-form-column .form-field textarea {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .contact-form-column .form-field textarea {
+    min-height: 126px;
+  }
+
+  .contact-form-column .checkbox-row {
+    font-size: 11px;
+  }
+
+  .contact-form-column .form-actions {
+    align-items: stretch;
+  }
+
+  .contact-form-column .form-actions .button {
+    width: 100%;
+  }
+
+  .contact-form-note {
+    font-size: 11px;
+  }
+
+  .footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 22px;
+  }
+
+  .footer-brand-column {
+    grid-column: 1 / -1;
+  }
+
+  .footer-link-group h2 {
+    font-size: 14px;
+  }
+
+  .footer-link-group ul {
+    gap: 10px;
+  }
+
+  .footer-link-group a {
+    font-size: 13px;
+  }
+
+  .footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 13px;
+    padding-bottom: 18px;
+  }
+
+  .footer-bottom p {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .footer-legal {
+    gap: 12px 18px;
+  }
+
+  .site-footer {
+    padding-bottom: 78px;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-page .hero-actions .button {
+    font-size: 11px;
+  }
+
+
+
+
+  .home-rentals-section .car-rail {
+    grid-auto-columns: minmax(0, 84%);
+  }
+
+  .contact-hero-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-hero-actions .button {
+    width: 100%;
+  }
+
+  .contact-main-section .contact-city-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-categories-section .category-card-media img,
+  .home-rentals-section .car-card,
+  .home-rentals-section .car-card-media img {
+    transition: none;
+  }
+}
+
+/* Olasco's new mark: a forward-moving road-shaped A beside a clean wordmark. */
+.brand-symbol {
+  width: 46px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--lime);
+  letter-spacing: 0;
+}
+
+.brand-symbol svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.brand-wordmark strong {
+  font-size: 18px;
+  font-weight: 850;
+  letter-spacing: -0.045em;
+}
+
+.brand-wordmark small {
+  margin-top: 4px;
+  color: var(--lime);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  opacity: 0.92;
+}
+
+/* Keep the rental cards readable until there is room for four full cards. */
+@media (min-width: 641px) and (max-width: 1000px) {
+  .home-rentals-section .car-rail {
+    grid-auto-columns: minmax(240px, 30%);
+  }
+}
+
+@media (max-width: 900px) {
+  .home-fleet-section .split-feature {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .home-categories-section .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-symbol {
+    width: 40px;
+    height: 38px;
+  }
+
+  .brand-wordmark strong {
+    font-size: 15px;
+  }
+
+  .brand-wordmark small {
+    margin-top: 3px;
+    font-size: 8px;
+  }
+
+  .page-hero-inner,
+  .about-story,
+  .contact-hero-inner {
+    width: min(calc(100% - 32px), var(--container));
+    min-width: 0;
+  }
+
+  .page-hero-media,
+  .about-story-photo {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-inline: 0;
+  }
+
+  .about-story-photo {
+    min-height: 0;
+    aspect-ratio: 1.2 / 1;
+  }
+}
+
+/* Reset the browser's default 40px figure margins. These were pushing page
+   hero photos past the viewport on narrow screens. */
+.page-hero-inner,
+.page-hero-lead,
+.page-hero-media {
+  min-width: 0;
+}
+
+.page-hero-media {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.page-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The policy note is a stacked, full-width panel on tablets and phones. */
+@media (max-width: 1000px) {
+  .rental-terms-callout {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    gap: 18px;
+    padding: 24px;
+  }
+
+  .rental-terms-callout > div {
+    min-width: 0;
+  }
+
+  .rental-terms-callout h2 {
+    max-width: 24ch;
+    font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+    line-height: 1.16;
+  }
+
+  .rental-terms-callout p:not(.eyebrow) {
+    max-width: none;
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .rental-terms-callout > .button {
+    justify-self: start;
+    max-width: 100%;
+    min-height: 48px;
+    white-space: normal;
+  }
+}
+
+/* A flex rail prevents CSS grid from shrinking the cards to fit four columns. */
+@media (min-width: 641px) and (max-width: 1000px) {
+  .home-rentals-section .car-rail {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    margin-right: -24px;
+    padding-right: 24px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .home-rentals-section .car-card {
+    flex: 0 0 clamp(240px, 28vw, 285px);
+    width: clamp(240px, 28vw, 285px);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-hero-media {
+    min-height: 0;
+    aspect-ratio: 1.45 / 1;
+  }
+
+  .rental-terms-callout {
+    gap: 16px;
+    margin-top: 24px;
+    padding: 21px 19px;
+    border-radius: 14px;
+  }
+
+  .rental-terms-callout > .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .home-rentals-section .rail-controls {
+    display: none;
+  }
+
+  .home-rentals-section .car-rail {
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .home-rentals-section .car-card {
+    display: grid;
+    grid-template-columns: minmax(108px, 0.78fr) minmax(0, 1.22fr);
+    width: 100%;
+    min-width: 0;
+    min-height: 152px;
+    border-radius: 12px;
+  }
+
+  .home-rentals-section .car-card-media {
+    height: 100%;
+    min-height: 152px;
+    aspect-ratio: auto;
+  }
+
+  .home-rentals-section .car-card-body {
+    min-width: 0;
+    min-height: 152px;
+    gap: 8px;
+    padding: 13px 14px;
+  }
+
+  .home-rentals-section .car-card-name {
+    font-size: 14px;
+  }
+
+  .home-rentals-section .car-card-meta {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .home-rentals-section .car-card-price {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-rentals-section .car-card {
+    grid-template-columns: minmax(96px, 0.72fr) minmax(0, 1.28fr);
+  }
+
+  .home-rentals-section .car-card-body {
+    gap: 6px;
+    padding: 11px 10px;
+  }
+
+  .home-rentals-section .car-card .card-arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* A cleaner hero: let the headline and booking actions own the first screen. */
+.home-page .hero {
+  min-height: clamp(600px, 74svh, 730px);
+}
+
+.home-page .hero-inner {
+  min-height: inherit;
+  justify-content: center;
+  gap: 0;
+  padding-block: 136px 56px;
+}
+
+.home-page .hero-copy {
+  padding-top: 0;
+}
+
+@media (max-width: 1000px) {
+  .home-page .hero {
+    min-height: 660px;
+  }
+
+  .home-page .hero-inner {
+    padding-block: 116px 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-page .hero {
+    min-height: 620px;
+  }
+
+  .home-page .hero-inner {
+    padding-block: 96px 42px;
+  }
+}
+
+/* Popular rental cards: keep the vehicle copy calm and the quote easy to scan. */
+.home-rentals-section .car-card {
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(7, 23, 34, 0.055);
+}
+
+.home-rentals-section .car-card:hover {
+  box-shadow: 0 16px 32px rgba(7, 23, 34, 0.12);
+}
+
+.home-rentals-section .car-card-body {
+  min-height: 104px;
+  padding: 14px 15px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.home-rentals-section .car-card-name {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.home-rentals-section .car-card-meta {
+  color: var(--stone);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.home-rentals-section .car-card-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 28px;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border: 1px solid rgba(95, 142, 43, 0.18);
+  border-radius: 999px;
+  background: var(--lime-tint);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.home-rentals-section .car-card-price::before {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--green);
+  content: "";
+}
+
+.home-rentals-section .car-card-price small {
+  color: var(--stone);
+}
+
+@media (max-width: 640px) {
+  .home-rentals-section .car-card-body {
+    min-height: 152px;
+    padding: 13px 14px;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-rentals-section .car-card-body {
+    padding: 11px 10px;
+  }
+}
