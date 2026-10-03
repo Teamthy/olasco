@@ -32,7 +32,7 @@ export default async function RentalsPage() {
         eyebrow="CAR RENTAL / LAGOS & ABUJA"
         title={<>A better start <span>to the road ahead.</span></>}
         description="Request a car for the day, a longer stay, or a route between cities. Olasco checks the actual vehicle, price, requirements, and availability with you before anything is confirmed."
-        aside={<>No sample listings. No checkout payment. A request reference and a real person for the next step.</>}
+        aside="Your request is checked by a real person. We confirm the vehicle, price, and requirements before you decide."
         image="/images/fleet-pair.jpg"
         imageAlt="Premium SUV and executive sedan from the Olasco fleet on a Lagos boulevard"
         dark
@@ -59,7 +59,7 @@ export default async function RentalsPage() {
             {rentalServices.map(({ title, href, detail, icon: Icon }, index) => <Link className="rental-service-tile" href={href} key={`${title}-${index}`}><span className="rental-service-number">0{index + 1}</span><Icon size={19} aria-hidden="true" /><h3>{title}</h3><p>{detail}</p><span className="inline-arrow-link">Explore service<ArrowUpRight size={14} aria-hidden="true" /></span></Link>)}
           </div>
           <div className="rental-terms-callout">
-            <div><p className="eyebrow">BEFORE YOU CONFIRM</p><h2>Ask about the details that affect your trip.</h2><p>Driver eligibility, licence and ID requirements, deposits, insurance, mileage, cancellation, delivery, and route rules still need owner approval. Olasco will confirm the applicable terms before you agree.</p></div>
+            <div><p className="eyebrow">BEFORE YOU CONFIRM</p><h2>Know the details before you go.</h2><p>Driver eligibility, required documents, deposits, mileage, insurance, delivery, and route rules can vary. We’ll confirm the terms that apply before you agree.</p></div>
             <ButtonLink href="/rentals/policies" variant="outline">Read rental policies<ArrowUpRight size={14} aria-hidden="true" /></ButtonLink>
           </div>
         </div>

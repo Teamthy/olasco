@@ -8,6 +8,7 @@ A mobile-first, request-led website for Olasco Autos in Lagos and Abuja. The pla
 
 - [Architecture, sitemap, data model, API/component design, flows, responsive strategy, and phases](docs/ARCHITECTURE.md)
 - [Owner information and approvals required before launch](docs/OWNER-INPUTS.md)
+- [Visual reference and layout notes](docs/design-reference.md) / [reference-image archive notes](docs/reference/README.md)
 - [Editorial image sources and replacement guide](public/images/IMAGE-SOURCES.md)
 
 ## Stack

@@ -45,7 +45,7 @@ export default function CategoriesPage() {
         description="Find the kind of vehicle or service your trip needs, then share your dates and city. Olasco confirms the exact vehicle, current rate, and requirements before anything is agreed."
         image="/images/fleet-lineup.jpg"
         imageAlt="Black SUV, executive sedan and compact city car parked together"
-        aside="Categories describe the kind of vehicle or service requested — never a specific car, price, or availability."
+        aside="Choose a class to start. We’ll confirm exact vehicle options, availability, and current pricing with you."
       />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Categories" }]} />
 

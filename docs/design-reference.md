@@ -1,29 +1,29 @@
 # Olasco Autos visual reference
 
-This is the implementation brief retained with the project for future visual updates. It records the supplied reference direction: a premium car-hire landing page with a cinematic full-bleed hero, deep navy surfaces, bright lime accents, crisp white editorial sections, compact vehicle cards, a short category grid, a trust-led customer-care panel, and a dark multi-column footer.
+This is the implementation brief retained with the project for future visual updates. The attached screenshots establish a premium car-hire direction: cinematic full-bleed hero, deep navy surfaces, restrained lime accents, crisp white editorial sections, compact vehicle cards, a short category grid, a customer-care panel, and a dark multi-column footer.
 
 ## Page rhythm
 
-1. Header over the home hero, with a compact brand mark, short navigation, search, and a prominent booking action.
-2. Scenic hero with copy and two clear actions, followed by a four-point support strip.
-3. White fleet feature: short copy and benefits on the left, a large rounded vehicle photo with a lime accent shape on the right.
+1. Transparent navigation over the home hero, with the Olasco mark, short navigation, search, and a booking action.
+2. Scenic, uncluttered hero with focused copy and two clear actions.
+3. White fleet feature: concise copy and benefits on the left, a large rounded vehicle photo with a simple lime offset accent on the right.
 4. Full-width dark “why choose us” image band.
-5. Popular vehicle/service cards, then a single wide booking callout.
-6. Six image-led categories, a concise customer-care panel, then the footer.
-7. Contact page with a direct WhatsApp action, phone/email options, service areas, and an accessible message form.
+5. Popular vehicle/service cards, followed by one wide booking callout.
+6. Six image-led categories, a truthful customer-care promise, then the footer.
+7. Contact page with direct WhatsApp, phone/email choices, service areas, and an accessible message form.
 
-## Visual tokens
+## Visual direction
 
-- Dark navy: `#0b1117`; lime: `#b8f32e`; supporting green: `#6fa82b`.
-- Keep the hero close to the reference: wordmark/navigation across the top; “Premium Cars / for Every Journey” on the left; white SUV and mountain-lake scene on the right; primary and secondary pill actions; a four-item glass feature strip at the bottom.
-- The Olasco mark is a compact car silhouette with an `OA` monogram; keep it vector/sharp and use the full OLASCO AUTOS wordmark beside it.
-- Large editorial car imagery; avoid thumbnail-quality or soft/blurred photos.
-- Rounded corners and subtle borders; avoid heavy gradients, excessive shadows, and overly decorative shapes.
-- Mobile-first layouts: stack contact/form sections, show touch-sized controls, use swipeable vehicle cards, and keep category tiles readable in two columns.
-- “Chat with Olasco” actions must open the business WhatsApp conversation directly through the configured `wa.me` link.
+- Dark navy: `#071722`; lime: `#b9f23a`; supporting green: `#5f8e2b`.
+- Use generous but controlled whitespace, clear typographic hierarchy, subtle borders, and modest corner radii. Avoid excessive pill surfaces, decorative gradients, and heavy shadows.
+- The Olasco identity uses a compact lime road/A mark with a clear OLASCO / AUTOS wordmark; keep the vector sharp at small sizes. Reusable light and inverse SVG lockups are in `public/brand/`.
+- Keep large photography crisp. The project images are local and delivered through Next Image with high-quality responsive sizes.
+- Keep vehicle information honest: do not imply a specific make, model, price, availability, testimonial, or customer count without verified owner-provided data.
+- Mobile-first layouts: comfortable 44–50px controls, readable full-width rental cards with image-and-copy rows, a clear lime-tint “Quote on request” price chip, two-column category tiles, and stacked contact/form sections.
+- Every “Chat with Olasco” action should open the configured business WhatsApp conversation directly via `wa.me`.
 
-## Reference screenshot files
+## Reference files
 
-The screenshot attachments listed in the original request were not present in the sandbox when this implementation ran (`/home/user/uploads` did not exist, and the filenames could not be found under `/home`, `/mnt/data`, or `/tmp`). The original binaries therefore could not be copied into the repository. Re-upload the screenshots into `docs/reference/` if they need to be retained byte-for-byte.
+The six attachment filenames and their corresponding page sections are catalogued in [`reference/README.md`](reference/README.md). The original PNG binaries were not available in the sandbox filesystem, so they could not be checked into the repository. The guidance is retained here until the files can be copied into `docs/reference/`.
 
-The new high-resolution editorial photos used for this refresh are stored in `public/images/` and catalogued in `public/images/IMAGE-SOURCES.md`.
+The local high-resolution editorial photos used by the site are in `public/images/` and catalogued in `public/images/IMAGE-SOURCES.md`. They are generated placeholders, not verified photos of Olasco-owned vehicles, current listings, staff, or offices.

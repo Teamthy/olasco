@@ -27,25 +27,15 @@ export default function ContactPage() {
   return (
     <>
       <section className="contact-hero">
-        <div className="contact-hero-bg" aria-hidden="true">
-          <Image
-            src="/images/lagos-city.jpg"
-            alt=""
-            fill
-            priority
-            quality={92}
-            sizes="100vw"
-          />
-        </div>
         <div className="container contact-hero-inner">
           <div className="contact-hero-copy">
-            <p className="eyebrow eyebrow--lime">CONTACT / LAGOS & ABUJA</p>
+            <p className="eyebrow">CONTACT / LAGOS & ABUJA</p>
             <h1>
               Let’s plan a <span>better journey.</span>
             </h1>
             <p>
-              Tell us where you’re going and what you need. A real person from Olasco will help you with availability, clear pricing, and
-              the next steps.
+              Tell us where you’re going and what you need. A real person from Olasco will check availability, explain the options, and help
+              you work out the next step.
             </p>
             <div className="contact-hero-actions">
               <WhatsAppLink context="general" variant="primary" icon="whatsapp">
@@ -56,17 +46,25 @@ export default function ContactPage() {
                 <ArrowRight size={15} aria-hidden="true" />
               </a>
             </div>
-          </div>
-          <aside className="contact-hero-card">
-            <span className="contact-hero-card-icon" aria-hidden="true"><ShieldCheck size={22} /></span>
-            <p className="contact-hero-card-kicker">DIRECT, PERSONAL SUPPORT</p>
-            <h2>One clear conversation gets you moving.</h2>
-            <p>Share your city, dates, and route. We’ll check what is available and explain the terms before you decide.</p>
-            <div className="contact-hero-card-foot">
-              <MapPin size={16} aria-hidden="true" />
-              <span>Serving Lagos and Abuja</span>
+            <div className="contact-hero-proof" role="group" aria-label="Olasco service information">
+              <span><MapPin size={15} aria-hidden="true" /> Lagos & Abuja</span>
+              <span><ShieldCheck size={15} aria-hidden="true" /> Clear terms before you decide</span>
             </div>
-          </aside>
+          </div>
+          <div className="contact-hero-photo">
+            <Image
+              src="/images/chauffeur-pickup.jpg"
+              alt="A chauffeur welcoming a passenger beside a premium sedan"
+              fill
+              priority
+              quality={92}
+              sizes="(max-width: 860px) 92vw, 46vw"
+            />
+            <div className="contact-hero-photo-caption">
+              <span>PERSONAL, DIRECT SUPPORT</span>
+              <strong>A better trip starts with a conversation.</strong>
+            </div>
+          </div>
         </div>
       </section>
 

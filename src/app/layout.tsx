@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/manrope";
 import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
+import "./editorial-refresh.css";
 import { businessConfig } from "@/config/business";
 import { MobileActionBar } from "@/components/mobile-action-bar";
 import { SiteFooter } from "@/components/site-footer";
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1117",
+  themeColor: "#071722",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -41,7 +43,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-NG">
+    <html lang="en-NG" data-scroll-behavior="smooth">
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <SiteHeader />

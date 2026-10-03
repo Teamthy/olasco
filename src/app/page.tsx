@@ -4,11 +4,8 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
-  BadgeCheck,
   CalendarClock,
-  CarFront,
   Handshake,
-  Headphones,
   MapPin,
   Quote,
   ShieldCheck,
@@ -25,13 +22,6 @@ export const metadata: Metadata = {
     "Rent a car, arrange airport pickup or chauffeur travel, and find your next vehicle in Lagos and Abuja. Talk to Olasco Autos on WhatsApp.",
   alternates: { canonical: "/" },
 };
-
-const heroFeatures = [
-  { icon: Headphones, title: "Personal Support", text: "A real person, from first message to pickup." },
-  { icon: CalendarClock, title: "Flexible Rental", text: "Hours, days or longer." },
-  { icon: BadgeCheck, title: "Clear Pricing", text: "Get the full quote before you decide." },
-  { icon: CarFront, title: "Vehicle Options", text: "Find the right fit for your trip." },
-];
 
 const fleetBenefits = [
   { icon: CalendarClock, title: "Easy Booking", text: "A quick, simple request." },
@@ -136,20 +126,6 @@ export default function HomePage() {
                   Explore Fleet
                 </ButtonLink>
               </div>
-            </div>
-
-            <div className="hero-features" aria-label="Olasco Autos service highlights">
-              {heroFeatures.map(({ icon: Icon, title, text }) => (
-                <div className="hero-feature" key={title}>
-                  <span className="hero-feature-icon" aria-hidden="true">
-                    <Icon size={19} />
-                  </span>
-                  <span className="hero-feature-copy">
-                    <strong>{title}</strong>
-                    <span>{text}</span>
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
         </section>
