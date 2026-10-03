@@ -81,10 +81,6 @@ export function SiteHeader() {
                 <span>{item.label}</span>
               </Link>
             ))}
-            <Link className="mobile-menu-link" href="/contact" onClick={() => setMenuOpen(false)}>
-              <span className="mobile-menu-index">0{primaryNavigation.length + 1}</span>
-              <span>Contact</span>
-            </Link>
           </nav>
           <div className="mobile-menu-actions">
             <Link className="button button--primary" href="/rentals/booking" onClick={() => setMenuOpen(false)}>

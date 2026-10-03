@@ -1,9 +1,9 @@
 export const primaryNavigation = [
   { label: "Home", href: "/" },
-  { label: "Rent a car", href: "/rentals" },
-  { label: "Cars for sale", href: "/cars" },
+  { label: "Cars", href: "/cars" },
   { label: "Categories", href: "/categories" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const footerGroups = [

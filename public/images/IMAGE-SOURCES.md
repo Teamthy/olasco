@@ -6,7 +6,10 @@ All files in this folder are **generated editorial photography**, produced for t
 
 | Local file | Dimensions | Description | Used for |
 | --- | --- | --- | --- |
-| `hero-fleet.jpg` | 1152 × 768 | Black premium SUV on a city boulevard at golden hour | Home hero, SUV rental class |
+| `home-hero-mountain.jpg` | 1200 × 800 | Pearl-white SUV on a mountain lakeside road at golden hour | Home hero, SUV rental card, social preview |
+| `fleet-feature-lakeside.jpg` | 1200 × 800 | Pearl-white SUV beside a mountain lake | Home fleet feature, SUV category |
+| `why-drive-banner.jpg` | 1536 × 672 | White sedan on a sweeping mountain road at sunset | Home story band and booking callout |
+| `hero-fleet.jpg` | 1152 × 768 | Black premium SUV on a city boulevard at golden hour | SUV rental class |
 | `fleet-pair.jpg` | 1584 × 672 | Premium SUV and executive sedan side by side | Rentals page hero |
 | `executive-sedan.jpg` | 1408 × 768 | Black executive sedan outside a glass office building | Cars-for-sale hero, executive class |
 | `fleet-lineup.jpg` | 1408 × 768 | SUV, executive sedan and city car parked together | Locations hero, city-car class, event transport |

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "Olasco Autos — Premium cars for every journey",
     description: "Car rental, vehicle sourcing, pickup and planned journeys in Lagos and Abuja.",
     url: businessConfig.publicUrl,
-    images: [{ url: "/images/hero-fleet.jpg", width: 1152, height: 768, alt: "Olasco Autos fleet photography — premium SUV in Lagos, Nigeria" }],
+    images: [{ url: "/images/home-hero-mountain.jpg", width: 1200, height: 800, alt: "Olasco Autos editorial photography — premium SUV on a scenic drive" }],
   },
   twitter: {
     card: "summary_large_image",
