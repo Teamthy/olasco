@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 };
 
 const vehicleCategories = [
-  { name: "Economy", note: "Everyday city driving", href: "/rentals/sedan", image: "/images/fleet-lineup.jpg", alt: "Compact city car parked on a quiet street" },
-  { name: "SUV", note: "Space for people and luggage", href: "/rentals/suv", image: "/images/hero-fleet.jpg", alt: "Black premium SUV at golden hour" },
+  { name: "Economy", note: "Everyday city driving", href: "/rentals/sedan", image: "/images/fleet-lineup.jpg", alt: "A selection of vehicles, including a compact city car" },
+  { name: "SUV", note: "Space for people and luggage", href: "/rentals/suv", image: "/images/fleet-feature-lakeside.jpg", alt: "Pearl-white SUV beside a mountain lake" },
   { name: "Executive", note: "Meetings and business travel", href: "/rentals/executive", image: "/images/executive-sedan.jpg", alt: "Black executive sedan outside a glass office building" },
   { name: "Luxury", note: "Premium occasions", href: "/rentals/luxury", image: "/images/fleet-pair.jpg", alt: "Premium SUV and executive sedan side by side" },
-  { name: "Extended rental", note: "Weeks and months", href: "/rentals/long-term", image: "/images/city-car.jpg", alt: "Compact car on a Lagos street" },
-  { name: "Interstate rental", note: "Route checked first", href: "/rentals/interstate", image: "/images/interstate-highway.jpg", alt: "SUV travelling on an expressway at golden hour" },
+  { name: "Extended rental", note: "Weeks and months", href: "/rentals/long-term", image: "/images/fleet-lineup.jpg", alt: "A lineup of vehicles available to discuss for an extended rental" },
+  { name: "Interstate rental", note: "Route checked first", href: "/rentals/interstate", image: "/images/why-drive-banner.jpg", alt: "A sedan on a sweeping mountain road at sunset" },
 ];
 
 const serviceCategories = [

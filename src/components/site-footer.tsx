@@ -60,7 +60,13 @@ export function SiteFooter() {
             <ul>
               {group.links.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href}>{link.label}</Link>
+                  {link.href === "/whatsapp" ? (
+                    <WhatsAppLink context="general" variant="text" icon="none" className="footer-group-chat-link">
+                      {link.label}
+                    </WhatsAppLink>
+                  ) : (
+                    <Link href={link.href}>{link.label}</Link>
+                  )}
                 </li>
               ))}
             </ul>
