@@ -20,6 +20,7 @@ export interface LocalLead {
   email?: string;
   serviceType?: string;
   city?: CityLabel;
+  serviceArea?: string;
   pickupDate?: string;
   pickupTime?: string;
   pickupAddress?: string;
@@ -87,6 +88,7 @@ export async function createLocalBooking(input: BookingRequestValidated, idempot
       status: "PENDING" satisfies BookingStatus,
       vehicle: input.requestedVehicle || null,
       location: input.location,
+      serviceArea: input.serviceArea || undefined,
       pickupDate: input.pickupDate,
       returnDate: input.returnDate,
       pickupTime: input.pickupTime,
@@ -126,6 +128,7 @@ export async function createLocalPickup(input: PickupRequestValidated): Promise<
       email: input.email,
       serviceType: input.serviceType,
       city: input.city,
+      serviceArea: input.serviceArea || undefined,
       pickupDate: input.pickupDate,
       pickupTime: input.pickupTime,
       pickupAddress: input.pickupAddress,
@@ -150,6 +153,7 @@ export async function createLocalInquiry(input: InquiryValidated): Promise<Local
       email: input.email,
       serviceType: input.type,
       city: input.city,
+      serviceArea: input.serviceArea || undefined,
       details: [input.preferredVehicle && `Vehicle: ${input.preferredVehicle}`, input.budget && `Budget: ${input.budget}`, input.message].filter(Boolean).join("\n"),
       createdAt: new Date().toISOString(),
     };
@@ -167,6 +171,8 @@ export async function createLocalContact(input: ContactValidated): Promise<Local
       fullName: input.fullName,
       phone: input.phone,
       email: input.email,
+      city: input.city,
+      serviceArea: input.serviceArea || undefined,
       details: `${input.subject}\n\n${input.message}`,
       createdAt: new Date().toISOString(),
     };

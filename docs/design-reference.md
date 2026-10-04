@@ -16,7 +16,7 @@ This is the implementation brief retained with the project for future visual upd
 
 - Dark navy: `#071722`; lime: `#b9f23a`; supporting green: `#5f8e2b`.
 - Use generous but controlled whitespace, clear typographic hierarchy, subtle borders, and modest corner radii. Avoid excessive pill surfaces, decorative gradients, and heavy shadows.
-- The Olasco identity uses a compact lime road/A mark with a clear OLASCO / AUTOS wordmark; keep the vector sharp at small sizes. Reusable light and inverse SVG lockups are in `public/brand/`.
+- The Olasco identity is a premium automotive badge: a gold-ringed navy medallion with a road running to a bright horizon star, flanked by speed arcs (a wheel-rim and gauge nod). The wordmark pairs a tracked OLASCO with a wide-tracked gold AUTOS line. Keep the vector sharp at small sizes. Reusable light and inverse SVG lockups plus the standalone emblem are in `public/brand/`.
 - Keep large photography crisp. The project images are local and delivered through Next Image with high-quality responsive sizes.
 - Keep vehicle information honest: do not imply a specific make, model, price, availability, testimonial, or customer count without verified owner-provided data.
 - Mobile-first layouts: comfortable 44–50px controls, readable full-width rental cards with image-and-copy rows, a clear lime-tint “Quote on request” price chip, two-column category tiles, and stacked contact/form sections.

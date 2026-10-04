@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, CalendarDays, CircleCheck, MapPin } from "lucide-react";
 import type { RentalServiceType } from "@/domain/types";
+import { isServiceAreaOf } from "@/content/service-areas";
 import { getVehicleBySlug } from "@/server/repositories";
 import { BookingForm } from "@/components/booking-form";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -27,6 +28,8 @@ export default async function RentalBookingPage({ searchParams }: { searchParams
   const category = categoryLookup[rawCategory] ? rawCategory : "SUV";
   const pickupDate = typeof query.pickupDate === "string" ? query.pickupDate : "";
   const returnDate = typeof query.returnDate === "string" ? query.returnDate : "";
+  const rawArea = typeof query.area === "string" ? query.area : "";
+  const serviceArea = rawArea && isServiceAreaOf(location, rawArea) ? rawArea : "";
   const vehicleSlug = typeof query.vehicle === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(query.vehicle) ? query.vehicle : "";
   const vehicle = vehicleSlug ? await getVehicleBySlug(vehicleSlug) : null;
   if (vehicleSlug && vehicle && !vehicle.isForRent) notFound();
@@ -36,7 +39,7 @@ export default async function RentalBookingPage({ searchParams }: { searchParams
         <div className="hero-actions page-hero-actions"><WhatsAppLink context="rental" variant="text" className="hero-secondary" icon="whatsapp">Ask before you book<ArrowUpRight size={14} aria-hidden="true" /></WhatsAppLink></div>
       </PageHero>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Rentals", href: "/rentals" }, { label: "Rental request" }]} />
-      <section className="section section--paper"><div className="container"><BookingForm initialLocation={location} initialCategory={categoryLookup[category] || category} initialPickupDate={pickupDate} initialReturnDate={returnDate} initialVehicleSlug={vehicle ? vehicle.slug : ""} initialVehicleName={vehicle ? `${vehicle.year} ${vehicle.make} ${vehicle.model}` : ""} initialService={serviceType} /></div></section>
+      <section className="section section--paper"><div className="container"><BookingForm initialLocation={location} initialCategory={categoryLookup[category] || category} initialPickupDate={pickupDate} initialReturnDate={returnDate} initialVehicleSlug={vehicle ? vehicle.slug : ""} initialVehicleName={vehicle ? `${vehicle.year} ${vehicle.make} ${vehicle.model}` : ""} initialService={serviceType} initialServiceArea={serviceArea} /></div></section>
       <section className="request-footnote"><div className="container request-footnote-inner"><div><p className="eyebrow">NO ONLINE PAYMENT</p><h2>Your request stays a request until the team confirms it.</h2><p>Availability, exact model, price, driver, deposits, mileage, delivery, and cancellation terms are discussed directly before a reservation is confirmed.</p></div><div className="request-footnote-stamps"><span><CircleCheck size={15} aria-hidden="true" />Reference number</span><span><CalendarDays size={15} aria-hidden="true" />Date validation</span><span><MapPin size={15} aria-hidden="true" />Lagos / Abuja</span></div></div></section>
     </>
   );

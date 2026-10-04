@@ -153,6 +153,7 @@ model Booking {
   requestedVehicle String?
   serviceType      RentalServiceType
   location         City
+  serviceArea      String?
   pickupDate       DateTime          @db.Date
   returnDate       DateTime          @db.Date
   pickupTime       String
@@ -184,6 +185,7 @@ model Inquiry {
   email              String?
   type               InquiryType
   city               City?
+  serviceArea        String?
   preferredVehicle   String?
   budget             String?
   message            String
@@ -205,6 +207,7 @@ model PickupRequest {
   email            String?
   serviceType      PickupServiceType
   city             City
+  serviceArea      String?
   pickupDate       DateTime         @db.Date
   pickupTime       String
   returnDate       DateTime?        @db.Date
@@ -230,6 +233,8 @@ model ContactMessage {
   phone            String
   email            String?
   subject          String
+  city             City?
+  serviceArea      String?
   message          String
   privacyConsentAt DateTime
   createdAt        DateTime @default(now())

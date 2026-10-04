@@ -1,7 +1,24 @@
 import { z } from "zod";
+import { isServiceAreaOf } from "@/content/service-areas";
 import type { CityLabel } from "@/domain/types";
 
 const citySchema = z.enum(["Lagos", "Abuja"]);
+const serviceAreaSchema = z.string().trim().max(80, "Area name is too long.").optional().default("");
+const serviceAreaBelongsToCity = (
+  area: string | undefined,
+  city: CityLabel | undefined,
+  context: z.RefinementCtx,
+  path: (string | number)[],
+) => {
+  if (!area) return;
+  if (!city) {
+    context.addIssue({ code: "custom", path, message: "Choose the city for this area." });
+    return;
+  }
+  if (!isServiceAreaOf(city, area)) {
+    context.addIssue({ code: "custom", path, message: "Choose a listed local government area or district for the selected city." });
+  }
+};
 const optionalEmailSchema = z.preprocess(
   (value) => (typeof value === "string" && value.trim() === "" ? undefined : value),
   z.string().trim().email("Enter a valid email address.").max(254).optional(),
@@ -46,6 +63,7 @@ export const bookingRequestSchema = z
     requestedVehicle: z.string().trim().max(100).optional().default(""),
     vehicleSlug: z.string().trim().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).optional(),
     location: citySchema,
+    serviceArea: serviceAreaSchema,
     pickupDate: dateOnlySchema.refine(notInPast, "Pickup date cannot be in the past."),
     returnDate: dateOnlySchema,
     pickupTime: z.string().trim().regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Choose a pickup time."),
@@ -65,6 +83,10 @@ export const bookingRequestSchema = z
     if (value.vehicleSlug && !value.requestedVehicle) {
       context.addIssue({ code: "custom", path: ["requestedVehicle"], message: "Vehicle details are missing." });
     }
+    if (!value.serviceArea) {
+      context.addIssue({ code: "custom", path: ["serviceArea"], message: "Choose the pickup local government area." });
+    }
+    serviceAreaBelongsToCity(value.serviceArea, value.location, context, ["serviceArea"]);
   });
 
 export const pickupRequestSchema = z
@@ -79,6 +101,7 @@ export const pickupRequestSchema = z
       "CITY_TRANSFER",
     ]),
     city: citySchema,
+    serviceArea: serviceAreaSchema,
     pickupDate: dateOnlySchema.refine(notInPast, "Pickup date cannot be in the past."),
     pickupTime: z.string().trim().regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Choose a pickup time."),
     returnDate: dateOnlySchema.optional(),
@@ -92,22 +115,37 @@ export const pickupRequestSchema = z
     if (value.returnDate && value.returnDate < value.pickupDate) {
       context.addIssue({ code: "custom", path: ["returnDate"], message: "Return date cannot be before pickup." });
     }
+    if (!value.serviceArea) {
+      context.addIssue({ code: "custom", path: ["serviceArea"], message: "Choose the pickup local government area." });
+    }
+    serviceAreaBelongsToCity(value.serviceArea, value.city, context, ["serviceArea"]);
   });
 
-export const inquirySchema = z.object({
-  ...basePerson,
-  type: z.enum(["PURCHASE_CONSULTATION", "SELL_TRADE_IN", "GENERAL"]),
-  city: citySchema.optional(),
-  preferredVehicle: z.string().trim().max(120).optional().default(""),
-  budget: z.string().trim().max(80).optional().default(""),
-  message: z.string().trim().min(8, "Add a little detail so the team can help.").max(1200),
-});
+export const inquirySchema = z
+  .object({
+    ...basePerson,
+    type: z.enum(["PURCHASE_CONSULTATION", "SELL_TRADE_IN", "GENERAL"]),
+    city: citySchema.optional(),
+    serviceArea: serviceAreaSchema,
+    preferredVehicle: z.string().trim().max(120).optional().default(""),
+    budget: z.string().trim().max(80).optional().default(""),
+    message: z.string().trim().min(8, "Add a little detail so the team can help.").max(1200),
+  })
+  .superRefine((value, context) => {
+    serviceAreaBelongsToCity(value.serviceArea, value.city, context, ["serviceArea"]);
+  });
 
-export const contactSchema = z.object({
-  ...basePerson,
-  subject: z.string().trim().min(3, "Add a subject.").max(120),
-  message: z.string().trim().min(10, "Add a message.").max(1600),
-});
+export const contactSchema = z
+  .object({
+    ...basePerson,
+    subject: z.string().trim().min(3, "Add a subject.").max(120),
+    city: citySchema.optional(),
+    serviceArea: serviceAreaSchema,
+    message: z.string().trim().min(10, "Add a message.").max(1600),
+  })
+  .superRefine((value, context) => {
+    serviceAreaBelongsToCity(value.serviceArea, value.city, context, ["serviceArea"]);
+  });
 
 export const idempotencyKeySchema = z.string().uuid("Refresh the form and try again.");
 
