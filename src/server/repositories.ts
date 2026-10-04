@@ -1,11 +1,14 @@
 import { randomInt } from "node:crypto";
-import type { Prisma } from "@prisma/client";
-type City = "LAGOS" | "ABUJA";
-type VehicleCategory = "ECONOMY" | "SEDAN" | "SUV" | "LUXURY" | "EXECUTIVE" | "VAN" | "CONVERTIBLE" | "SPORTS";
-type VehicleWhereInput = { isPublished: boolean; isForRent?: boolean; isForSale?: boolean; location?: City; category?: VehicleCategory };
-type DecimalValue = number | { toString(): string };
 import type { BookingConfirmation, CityLabel, PublicBookingStatus, VehicleRecord } from "@/domain/types";
-import { getPrismaClient } from "@/server/db";
+import {
+  getPrismaClient,
+  type DbBookingRow,
+  type DbCity as City,
+  type DbVehicleCategory as VehicleCategory,
+  type DbVehicleRow,
+  type OlascoTransactionClient,
+} from "@/server/db";
+type VehicleWhereInput = { isPublished: boolean; isForRent?: boolean; isForSale?: boolean; location?: City; category?: VehicleCategory };
 import {
   createLocalBooking,
   createLocalContact,
@@ -46,33 +49,7 @@ function issueReference(prefix: "OLA-I" | "OLA-P" | "OLA-C") {
   return `${prefix}-${year}-${String(randomInt(0, 1_000_000_000_000)).padStart(12, "0")}`;
 }
 
-function mapVehicle(vehicle: {
-  id: string;
-  slug: string;
-  make: string;
-  model: string;
-  trim: string | null;
-  year: number;
-  category: VehicleCategory;
-  description: string;
-  currency: string;
-  rentalPriceDaily: DecimalValue | null;
-  rentalPriceWeekly: DecimalValue | null;
-  salePrice: DecimalValue | null;
-  location: City;
-  seats: number | null;
-  doors: number | null;
-  transmission: string | null;
-  fuelType: string | null;
-  color: string | null;
-  mileage: number | null;
-  features: string[];
-  isForRent: boolean;
-  isForSale: boolean;
-  isFeatured: boolean;
-  isAvailable: boolean;
-  images: Array<{ url: string; altText: string; sortOrder?: number }>;
-}): VehicleRecord {
+function mapVehicle(vehicle: DbVehicleRow): VehicleRecord {
   return {
     id: vehicle.id,
     slug: vehicle.slug,
@@ -103,7 +80,7 @@ function mapVehicle(vehicle: {
 }
 
 function assertWritableStorage(db: ReturnType<typeof getPrismaClient>): asserts db is NonNullable<ReturnType<typeof getPrismaClient>> {
-  if (!db && process.env.NODE_ENV === "production") throw new StorageUnavailableError();
+  if (!db && process.env.REQUIRE_DATABASE === "true") throw new StorageUnavailableError();
 }
 
 export async function listVehicles(filters: VehicleFilters = {}): Promise<VehicleRecord[]> {
@@ -114,39 +91,34 @@ export async function listVehicles(filters: VehicleFilters = {}): Promise<Vehicl
   if (filters.mode === "sale") where.isForSale = true;
   if (filters.city) where.location = toDbCity(filters.city);
   if (filters.category) where.category = filters.category;
-  const vehicles = await db.vehicle.findMany({
-    where,
-    include: { images: { orderBy: { sortOrder: "asc" } } },
-    orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
-    take: 60,
-  });
-  return vehicles.map(mapVehicle);
+  try {
+    const vehicles = await db.vehicle.findMany({
+      where,
+      include: { images: { orderBy: { sortOrder: "asc" } } },
+      orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
+      take: 60,
+    });
+    return vehicles.map(mapVehicle);
+  } catch {
+    return [];
+  }
 }
 
 export async function getVehicleBySlug(slug: string): Promise<VehicleRecord | null> {
   const db = getPrismaClient();
   if (!db) return null;
-  const vehicle = await db.vehicle.findFirst({
-    where: { slug, isPublished: true },
-    include: { images: { orderBy: { sortOrder: "asc" } } },
-  });
-  return vehicle ? mapVehicle(vehicle) : null;
+  try {
+    const vehicle = await db.vehicle.findFirst({
+      where: { slug, isPublished: true },
+      include: { images: { orderBy: { sortOrder: "asc" } } },
+    });
+    return vehicle ? mapVehicle(vehicle) : null;
+  } catch {
+    return null;
+  }
 }
 
-function mapBooking(record: {
-  reference: string;
-  status: BookingConfirmation["status"];
-  requestedVehicle: string | null;
-  vehicle: { make: string; model: string } | null;
-  location: City;
-  pickupDate: Date;
-  returnDate: Date;
-  pickupTime: string;
-  pickupAddress: string;
-  destination: string | null;
-  customer: { fullName: string; phone: string; email: string | null };
-  createdAt: Date;
-}): BookingConfirmation {
+function mapBooking(record: DbBookingRow): BookingConfirmation {
   return {
     bookingId: record.reference,
     reference: record.reference,
@@ -177,7 +149,7 @@ export async function createBooking(input: BookingRequestValidated, idempotencyK
   if (existing) return mapBooking(existing);
 
   try {
-    return await db.$transaction(async (tx: Prisma.TransactionClient) => {
+    return await db.$transaction(async (tx: OlascoTransactionClient) => {
       const vehicle = input.vehicleSlug
         ? await tx.vehicle.findFirst({
             where: { slug: input.vehicleSlug, isPublished: true, isAvailable: true, isForRent: true },
@@ -243,7 +215,7 @@ export async function createBooking(input: BookingRequestValidated, idempotencyK
 export async function getBookingPublicStatus(reference: string): Promise<PublicBookingStatus | null> {
   const db = getPrismaClient();
   if (!db) {
-    if (process.env.NODE_ENV === "production") throw new StorageUnavailableError();
+    if (process.env.REQUIRE_DATABASE === "true") throw new StorageUnavailableError();
     return getLocalBookingStatus(reference);
   }
   const record = await db.booking.findUnique({

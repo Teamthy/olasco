@@ -12,8 +12,7 @@ const contentSecurityPolicy = [
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self' https://wa.me",
-  "frame-ancestors 'none'",
-  "upgrade-insecure-requests",
+  ...(isProduction ? ["frame-ancestors 'none'", "upgrade-insecure-requests"] : []),
 ].join("; ");
 
 const nextConfig: NextConfig = {
@@ -35,10 +34,12 @@ const nextConfig: NextConfig = {
           { key: "Content-Security-Policy", value: contentSecurityPolicy },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "DENY" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
           ...(isProduction
-            ? [{ key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" }]
+            ? [
+                { key: "X-Frame-Options", value: "DENY" },
+                { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+              ]
             : []),
         ],
       },

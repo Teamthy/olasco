@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 const categories = new Set(["ECONOMY", "SEDAN", "SUV", "LUXURY", "EXECUTIVE", "VAN", "CONVERTIBLE", "SPORTS"]);
 
 export async function GET(request: Request) {
-  if (process.env.NODE_ENV === "production" && !process.env.DATABASE_URL) return apiJson({ error: "Inventory is not configured." }, 503);
+  if (process.env.REQUIRE_DATABASE === "true" && !process.env.DATABASE_URL) return apiJson({ error: "Inventory is not configured." }, 503);
   const params = new URL(request.url).searchParams;
   const modeParam = params.get("mode")?.toLowerCase();
   const cityParam = params.get("city")?.toLowerCase();
