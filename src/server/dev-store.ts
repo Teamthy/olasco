@@ -1,4 +1,5 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import type { BookingConfirmation, BookingStatus, CityLabel } from "@/domain/types";
@@ -37,7 +38,9 @@ interface LocalState {
   contactMessages: LocalLead[];
 }
 
-const dataDirectory = path.join(process.cwd(), ".data");
+const dataDirectory = process.env.VERCEL
+  ? path.join(os.tmpdir(), "olasco-data")
+  : path.join(process.cwd(), ".data");
 const dataFile = path.join(dataDirectory, "requests.json");
 const emptyState = (): LocalState => ({ version: 1, sequence: 0, bookings: [], inquiries: [], pickupRequests: [], contactMessages: [] });
 let writeQueue: Promise<unknown> = Promise.resolve();

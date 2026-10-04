@@ -12,13 +12,15 @@ const contentSecurityPolicy = [
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self' https://wa.me",
-  "frame-ancestors 'none'",
-  "upgrade-insecure-requests",
+  ...(isProduction ? ["frame-ancestors 'none'", "upgrade-insecure-requests"] : []),
 ].join("; ");
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   allowedDevOrigins: ["*.e2b.app", "localhost", "127.0.0.1"],
+  outputFileTracingIncludes: {
+    "/*": ["./node_modules/.prisma/client/**/*", "./node_modules/@prisma/client/**/*"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     // Next 16 only serves qualities listed here; 90 keeps hero and vehicle
@@ -35,10 +37,12 @@ const nextConfig: NextConfig = {
           { key: "Content-Security-Policy", value: contentSecurityPolicy },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "DENY" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
           ...(isProduction
-            ? [{ key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" }]
+            ? [
+                { key: "X-Frame-Options", value: "DENY" },
+                { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+              ]
             : []),
         ],
       },

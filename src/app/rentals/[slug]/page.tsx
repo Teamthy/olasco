@@ -34,7 +34,7 @@ export default async function RentalSlugPage({ params }: { params: Promise<Param
     const vehicles = await listVehicles({ mode: "rent", category: category.category });
     return (
       <>
-        <PageHero eyebrow={category.eyebrow} title={<>{category.title}</>} description={category.description} aside="Photos, current rates, and stock belong to confirmed listings only. Use the request form to check current options." dark>
+        <PageHero eyebrow={category.eyebrow} title={<>{category.title}</>} description={category.description} image={category.image} imageAlt={category.imageAlt} aside="Photos, current rates, and stock belong to confirmed listings only. Use the request form to check current options." dark>
           <div className="hero-actions page-hero-actions"><ButtonLink href={`/rentals/booking?category=${category.category}`}>Request {category.category.toLowerCase()} availability<ArrowUpRight size={15} aria-hidden="true" /></ButtonLink><WhatsAppLink context="rental" details={{ vehicle: category.category }} variant="text" className="hero-secondary" icon="whatsapp">Ask the team</WhatsAppLink></div>
         </PageHero>
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Rentals", href: "/rentals" }, { label: category.title }]} />
@@ -47,7 +47,7 @@ export default async function RentalSlugPage({ params }: { params: Promise<Param
   if (service) {
     return (
       <>
-        <PageHero eyebrow={service.eyebrow} title={<>{service.title}</>} description={service.description} aside="No booking is confirmed and no payment is taken through this request. A representative will discuss details with you." dark>
+        <PageHero eyebrow={service.eyebrow} title={<>{service.title}</>} description={service.description} image={service.image} imageAlt={service.imageAlt} aside="No booking is confirmed and no payment is taken through this request. A representative will discuss details with you." dark>
           <div className="hero-actions page-hero-actions"><ButtonLink href={`/rentals/booking?service=${service.serviceType}`}>Make a rental request<ArrowUpRight size={15} aria-hidden="true" /></ButtonLink><WhatsAppLink context={service.serviceType === "INTERSTATE_TRIP" ? "interstate" : "rental"} details={{ service: service.title }} variant="text" className="hero-secondary" icon="whatsapp">Ask a question</WhatsAppLink></div>
         </PageHero>
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Rentals", href: "/rentals" }, { label: service.title }]} />

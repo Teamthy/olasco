@@ -19,6 +19,10 @@ const contexts: Record<string, string> = {
   "city-transfer": "city transfer",
 };
 
+export function generateStaticParams() {
+  return pickupServices.map((item) => ({ service: item.slug }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { service } = await params;
   const entry = pickupServices.find((item) => item.slug === service);
@@ -36,7 +40,7 @@ export default async function PickupServicePage({ params }: { params: Promise<Pa
   if (!entry) notFound();
   return (
     <>
-      <PageHero eyebrow={entry.eyebrow} title={<>{entry.title}</>} description={entry.description} aside="Service areas, vehicle capacity, driver availability, airport meeting points, waiting terms, and prices are confirmed with Olasco for the specific itinerary." dark>
+      <PageHero eyebrow={entry.eyebrow} title={<>{entry.title}</>} description={entry.description} image={entry.image} imageAlt={entry.imageAlt} aside="Service areas, vehicle capacity, driver availability, airport meeting points, waiting terms, and prices are confirmed with Olasco for the specific itinerary." dark>
         <div className="hero-actions page-hero-actions"><a className="button button--primary" href="#request-form">Send an itinerary<ArrowUpRight size={15} aria-hidden="true" /></a><WhatsAppLink context={entry.context} details={{ service: entry.title }} variant="text" className="hero-secondary" icon="whatsapp">Ask about {contexts[service] || "this service"}</WhatsAppLink></div>
       </PageHero>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Pickup & travel", href: "/pickup" }, { label: entry.eyebrow }]} />

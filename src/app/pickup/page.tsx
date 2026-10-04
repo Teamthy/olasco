@@ -46,7 +46,7 @@ export default function PickupPage() {
           </div>
         </div>
       </section>
-      <section className="section section--ink pickup-process">
+      <section className="section section--ink">
         <div className="container split-feature">
           <div className="split-media"><Image src="/images/airport-pickup.jpg" alt="Chauffeur loading suitcases into a sedan at airport arrivals" fill quality={90} sizes="(max-width: 640px) 92vw, 48vw" /><span className="split-note">Airport arrivals</span></div>
           <div className="split-content split-content--light">
