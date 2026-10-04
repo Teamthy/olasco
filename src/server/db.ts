@@ -39,6 +39,7 @@ export interface DbBookingRow {
   requestedVehicle: string | null;
   vehicle: { make: string; model: string } | null;
   location: DbCity;
+  serviceArea: string | null;
   pickupDate: Date;
   returnDate: Date;
   pickupTime: string;
@@ -86,6 +87,7 @@ export interface OlascoPrismaClient {
       email: string | null;
       serviceType: string;
       city: DbCity;
+      serviceArea: string | null;
       pickupDate: Date;
       pickupTime: string;
       pickupAddress: string;
@@ -104,6 +106,7 @@ export interface OlascoPrismaClient {
       email: string | null;
       type: string;
       city: DbCity | null;
+      serviceArea: string | null;
       preferredVehicle: string | null;
       budget: string | null;
       message: string;
@@ -117,6 +120,8 @@ export interface OlascoPrismaClient {
       phone: string;
       email: string | null;
       subject: string;
+      city: DbCity | null;
+      serviceArea: string | null;
       message: string;
       createdAt: Date;
     }>;

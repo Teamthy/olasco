@@ -4,10 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { ActionButton, FieldError } from "@/components/ui";
+import { ServiceAreaSelect } from "@/components/service-area-select";
 import { createContextMessage, createWhatsAppLink } from "@/lib/whatsapp";
 
 export function ContactForm() {
-  const [form, setForm] = useState({ fullName: "", phone: "", email: "", subject: "", message: "", consent: false });
+  const [form, setForm] = useState({ fullName: "", phone: "", email: "", subject: "", city: "", serviceArea: "", message: "", consent: false });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -29,7 +30,7 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, city: form.city || undefined, serviceArea: form.serviceArea || undefined }),
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) {
@@ -45,7 +46,7 @@ export function ContactForm() {
   }
 
   if (reference) {
-    const message = createContextMessage("general", { service: "Contact message", reference, fullName: form.fullName, phone: form.phone, message: form.message });
+    const message = createContextMessage("general", { service: "Contact message", reference, location: form.city, serviceArea: form.serviceArea, fullName: form.fullName, phone: form.phone, message: form.message });
     return (
       <section className="form-success" aria-live="polite">
         <span className="confirmation-mark"><CheckCircle2 size={26} aria-hidden="true" /></span>
@@ -82,6 +83,17 @@ export function ContactForm() {
           <input id="contact-email" type="email" autoComplete="email" value={form.email} onChange={(event) => update("email", event.target.value)} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "contact-email-error" : undefined} />
           <FieldError id="contact-email-error">{errors.email}</FieldError>
         </div>
+        <ServiceAreaSelect
+          city={form.city as "" | "Lagos" | "Abuja"}
+          onCityChange={(city) => { update("city", city); update("serviceArea", ""); }}
+          area={form.serviceArea}
+          onAreaChange={(area) => update("serviceArea", area)}
+          cityId="contact-city"
+          areaId="contact-area"
+          cityLabel="City"
+          cityOptional
+          error={errors.serviceArea}
+        />
         <div className="form-field form-field--full">
           <label htmlFor="contact-subject">Subject</label>
           <input id="contact-subject" placeholder="Rental, vehicle purchase, pickup…" value={form.subject} onChange={(event) => update("subject", event.target.value)} aria-invalid={Boolean(errors.subject)} aria-describedby={errors.subject ? "contact-subject-error" : undefined} />

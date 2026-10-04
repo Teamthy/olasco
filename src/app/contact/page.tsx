@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import { businessConfig } from "@/config/business";
+import { CityMap } from "@/components/city-map";
 import { ContactForm } from "@/components/contact-form";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SectionHeading } from "@/components/section-heading";
@@ -135,14 +136,7 @@ export default function ContactPage() {
                 <div className="contact-city-grid">
                   {Object.values(businessConfig.locations).map((location) => (
                     <article className="contact-city" key={location.slug}>
-                      <span className="contact-city-head">
-                        <MapPin size={15} aria-hidden="true" />
-                        <strong>{location.name}</strong>
-                      </span>
-                      <p>Pickup points and coverage are confirmed for each request.</p>
-                      <a href={location.mapsUrl} target="_blank" rel="noopener noreferrer">
-                        View {location.name} map <ArrowUpRight size={13} aria-hidden="true" />
-                      </a>
+                      <CityMap city={location.name} mapsUrl={location.mapsUrl} compact note={`Pickup points and ${location.name === "Lagos" ? "local government area" : "area council and district"} coverage are confirmed for each request.`} />
                     </article>
                   ))}
                 </div>

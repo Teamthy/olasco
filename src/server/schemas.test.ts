@@ -16,6 +16,7 @@ function validBooking() {
     serviceType: "DAILY_RENTAL",
     requestedVehicle: "SUV",
     location: "Lagos",
+    serviceArea: "Eti-Osa",
     pickupDate,
     returnDate: addDays(new Date(`${pickupDate}T00:00:00.000Z`), 3),
     pickupTime: "09:00",
@@ -36,6 +37,7 @@ function validPickup() {
     email: "",
     serviceType: "AIRPORT_PICKUP",
     city: "Lagos",
+    serviceArea: "Ikeja",
     pickupDate,
     pickupTime: "10:30",
     returnDate: addDays(new Date(`${pickupDate}T00:00:00.000Z`), 1),
@@ -75,6 +77,24 @@ describe("booking request validation", () => {
     if (!result.success) expect(result.error.issues.some((issue) => issue.path.includes("destination"))).toBe(true);
   });
 
+  it("requires the pickup local government area", () => {
+    const result = bookingRequestSchema.safeParse({ ...validBooking(), serviceArea: "" });
+    expect(result.success).toBe(false);
+    if (!result.success) expect(result.error.issues.some((issue) => issue.path.includes("serviceArea"))).toBe(true);
+  });
+
+  it("rejects a service area that belongs to the other city", () => {
+    const result = bookingRequestSchema.safeParse({ ...validBooking(), location: "Abuja", serviceArea: "Eti-Osa" });
+    expect(result.success).toBe(false);
+    if (!result.success) expect(result.error.issues.some((issue) => issue.path.includes("serviceArea"))).toBe(true);
+  });
+
+  it("accepts an Abuja area council or district for Abuja requests", () => {
+    expect(bookingRequestSchema.safeParse({ ...validBooking(), location: "Abuja", serviceArea: "Abuja Municipal (AMAC)" }).success).toBe(true);
+    expect(bookingRequestSchema.safeParse({ ...validBooking(), location: "Abuja", serviceArea: "Gwarinpa" }).success).toBe(true);
+    expect(pickupRequestSchema.safeParse({ ...validPickup(), city: "Abuja", serviceArea: "Gwarinpa", pickupAddress: "Gwarinpa, Abuja", destination: "Maitama, Abuja" }).success).toBe(true);
+  });
+
   it("normalizes local and international contact formats", () => {
     expect(normalizePhone("0815-159-4253")).toBe("+2348151594253");
     expect(normalizePhone("+1 (415) 555-0100")).toBe("+14155550100");
@@ -87,6 +107,29 @@ describe("booking request validation", () => {
       expect(result.data.phone).toBe("+2348151594253");
       expect(result.data.luggage).toBe("Two bags");
     }
+  });
+
+  it("rejects a pickup request without a local government area", () => {
+    const result = pickupRequestSchema.safeParse({ ...validPickup(), serviceArea: "" });
+    expect(result.success).toBe(false);
+    if (!result.success) expect(result.error.issues.some((issue) => issue.path.includes("serviceArea"))).toBe(true);
+  });
+
+  it("rejects a purchase enquiry with an area but no city", () => {
+    const result = inquirySchema.safeParse({
+      fullName: "Ada Okafor",
+      phone: "08151594253",
+      email: "",
+      type: "PURCHASE_CONSULTATION",
+      city: undefined,
+      serviceArea: "Ikeja",
+      preferredVehicle: "SUV",
+      budget: "",
+      message: "I would like to discuss verified SUV options.",
+      consent: true,
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) expect(result.error.issues.some((issue) => issue.path.includes("serviceArea"))).toBe(true);
   });
 
   it("accepts the purchase inquiry form payload with no city preference", () => {

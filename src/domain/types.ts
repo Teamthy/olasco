@@ -75,6 +75,7 @@ export interface BookingConfirmation {
   status: BookingStatus;
   vehicle: string | null;
   location: CityLabel;
+  serviceArea?: string;
   pickupDate: string;
   returnDate: string;
   pickupTime: string;

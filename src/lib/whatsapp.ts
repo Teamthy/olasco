@@ -61,6 +61,7 @@ export function formatJourneyDate(value?: string) {
 export function createContextMessage(context: WhatsAppContext, details: Record<string, string | undefined> = {}) {
   const value = (key: string, fallback = "Not specified") => details[key]?.trim() || fallback;
   const hello = "Hello Olasco Autos,";
+  const areaLine = details.serviceArea?.trim() ? [`Area: ${details.serviceArea.trim()}`] : [];
 
   // A plain "chat with us" tap should not read like a half-filled form.
   const hasDetails = Object.values(details).some((entry) => entry?.trim());
@@ -74,6 +75,7 @@ export function createContextMessage(context: WhatsAppContext, details: Record<s
       `Booking reference: ${value("reference")}`,
       `Vehicle / class: ${value("vehicle", "I would like help choosing")}`,
       `Location: ${value("location")}`,
+      ...areaLine,
       `Pickup: ${formatJourneyDate(details.pickupDate)} at ${value("pickupTime")}`,
       `Return: ${formatJourneyDate(details.returnDate)}`,
       `Pickup point: ${value("pickupAddress")}`,
@@ -91,6 +93,7 @@ export function createContextMessage(context: WhatsAppContext, details: Record<s
       "I am interested in renting a car.",
       `Preferred class: ${value("vehicle", "Please recommend an option")}`,
       `City: ${value("location")}`,
+      ...areaLine,
       `Pickup date: ${formatJourneyDate(details.pickupDate)}`,
       `Return date: ${formatJourneyDate(details.returnDate)}`,
       `Rental type: ${value("serviceType", "Please advise")}`,
@@ -104,6 +107,7 @@ export function createContextMessage(context: WhatsAppContext, details: Record<s
       "I would like to discuss buying a vehicle.",
       `Vehicle / type: ${value("vehicle", "Please help me find the right car")}`,
       `City: ${value("location")}`,
+      ...areaLine,
       `Budget: ${value("budget")}`,
       `Name: ${value("fullName")}`,
       `Phone: ${value("phone")}`,
@@ -124,6 +128,7 @@ export function createContextMessage(context: WhatsAppContext, details: Record<s
       hello,
       `I am enquiring about ${service}.`,
       `City: ${value("location")}`,
+      ...areaLine,
       `Pickup: ${value("pickupAddress")}`,
       `Destination: ${value("destination")}`,
       `Date: ${formatJourneyDate(details.pickupDate)}`,
@@ -141,6 +146,7 @@ export function createContextMessage(context: WhatsAppContext, details: Record<s
     "I have a question about Olasco Autos services.",
     `Service: ${value("service", "Please help me choose")}`,
     `City: ${value("location")}`,
+    ...areaLine,
     `Name: ${value("fullName")}`,
     `Phone: ${value("phone")}`,
     `Message: ${value("message")}`,

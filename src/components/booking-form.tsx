@@ -4,8 +4,8 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, CalendarDays, Check, CircleCheck, MapPin, ShieldCheck } from "lucide-react";
-import { cityLabels } from "@/config/business";
 import { ActionButton, FieldError } from "@/components/ui";
+import { ServiceAreaSelect } from "@/components/service-area-select";
 import type { RentalServiceType } from "@/domain/types";
 
 type BookingFormState = {
@@ -16,6 +16,7 @@ type BookingFormState = {
   requestedVehicle: string;
   vehicleSlug: string;
   location: "Lagos" | "Abuja";
+  serviceArea: string;
   pickupDate: string;
   returnDate: string;
   pickupTime: string;
@@ -59,6 +60,7 @@ export function BookingForm({
   initialVehicleSlug = "",
   initialVehicleName = "",
   initialService = "DAILY_RENTAL",
+  initialServiceArea = "",
 }: {
   initialLocation?: string;
   initialCategory?: string;
@@ -67,6 +69,7 @@ export function BookingForm({
   initialVehicleSlug?: string;
   initialVehicleName?: string;
   initialService?: RentalServiceType;
+  initialServiceArea?: string;
 }) {
   const router = useRouter();
   const requestKey = useRef("");
@@ -82,6 +85,7 @@ export function BookingForm({
     requestedVehicle: initialVehicleName || categoryLabel(initialCategory),
     vehicleSlug: initialVehicleSlug,
     location: initialLocation === "Abuja" ? "Abuja" : "Lagos",
+    serviceArea: initialServiceArea,
     pickupDate: initialPickupDate,
     returnDate: initialReturnDate,
     pickupTime: "09:00",
@@ -109,6 +113,7 @@ export function BookingForm({
       else if (form.pickupDate && form.returnDate < form.pickupDate) nextErrors.returnDate = "Return date cannot be before pickup.";
       if (!form.pickupTime) nextErrors.pickupTime = "Choose a pickup time.";
       if (form.pickupAddress.trim().length < 4) nextErrors.pickupAddress = "Enter a pickup address or meeting point.";
+      if (!form.serviceArea) nextErrors.serviceArea = "Choose the pickup local government area.";
       if (form.serviceType === "INTERSTATE_TRIP" && form.destination.trim().length < 2) nextErrors.destination = "Add the interstate destination.";
       if (!Number.isInteger(Number(form.passengers)) || Number(form.passengers) < 1) nextErrors.passengers = "Enter at least one passenger.";
     }
@@ -147,6 +152,7 @@ export function BookingForm({
           requestedVehicle: form.requestedVehicle,
           ...(form.vehicleSlug ? { vehicleSlug: form.vehicleSlug } : {}),
           location: form.location,
+          serviceArea: form.serviceArea,
           pickupDate: form.pickupDate,
           returnDate: form.returnDate,
           pickupTime: form.pickupTime,
@@ -196,12 +202,17 @@ export function BookingForm({
                   <option value="INTERSTATE_TRIP">Interstate trip</option>
                 </select>
               </div>
-              <div className="form-field">
-                <label htmlFor="booking-city">City</label>
-                <select id="booking-city" value={form.location} onChange={(event) => update("location", event.target.value as "Lagos" | "Abuja")}>
-                  {cityLabels.map((city) => <option key={city} value={city}>{city}</option>)}
-                </select>
-              </div>
+              <ServiceAreaSelect
+                city={form.location}
+                onCityChange={(city) => update("location", city === "Abuja" ? "Abuja" : "Lagos")}
+                area={form.serviceArea}
+                onAreaChange={(area) => update("serviceArea", area)}
+                cityId="booking-city"
+                areaId="booking-area"
+                cityLabel="City"
+                areaOptional={false}
+                error={errors.serviceArea}
+              />
               <div className="form-field">
                 <label htmlFor="booking-class">Preferred vehicle class</label>
                 <select id="booking-class" value={form.requestedVehicle} onChange={(event) => { update("requestedVehicle", event.target.value); update("vehicleSlug", ""); }} aria-invalid={Boolean(errors.requestedVehicle)} aria-describedby={errors.requestedVehicle ? "booking-class-error" : "booking-class-help"}>
@@ -302,7 +313,7 @@ export function BookingForm({
             <legend className="form-section-title">Review before sending</legend>
             <div className="review-panel">
               <ReviewItem label="Rental type" value={form.serviceType.replaceAll("_", " ").toLowerCase()} />
-              <ReviewItem label="City" value={form.location} />
+              <ReviewItem label="City" value={form.serviceArea ? `${form.location} · ${form.serviceArea}` : form.location} />
               <ReviewItem label="Vehicle class" value={form.requestedVehicle} />
               <ReviewItem label="Pickup" value={`${form.pickupDate || "—"} · ${form.pickupTime || "—"}`} />
               <ReviewItem label="Return" value={form.returnDate || "—"} />
@@ -327,6 +338,7 @@ export function BookingForm({
         <p>Your details help the team check what is genuinely available. There is no online payment, automatic availability promise, or hidden fare on this form.</p>
         <ul className="form-aside-list">
           <li><MapPin size={14} aria-hidden="true" />Requests for Lagos and Abuja</li>
+          <li><MapPin size={14} aria-hidden="true" />Local government area confirmed per pickup</li>
           <li><ShieldCheck size={14} aria-hidden="true" />Requirements and fees discussed before confirmation</li>
           <li><CircleCheck size={14} aria-hidden="true" />A public reference after a successful submission</li>
         </ul>

@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { cityLabels } from "@/config/business";
 import type { InquiryType } from "@/domain/types";
 import { FieldError, ActionButton } from "@/components/ui";
+import { ServiceAreaSelect, type ServiceAreaCity } from "@/components/service-area-select";
 import { createContextMessage, createWhatsAppLink } from "@/lib/whatsapp";
 
 type InquiryFormState = {
@@ -14,6 +14,7 @@ type InquiryFormState = {
   email: string;
   type: InquiryType;
   city: string;
+  serviceArea: string;
   preferredVehicle: string;
   budget: string;
   message: string;
@@ -31,7 +32,7 @@ export function InquiryForm({
   initialVehicle?: string;
   title?: string;
 }) {
-  const [form, setForm] = useState<InquiryFormState>({ fullName: "", phone: "", email: "", type, city: initialCity, preferredVehicle: initialVehicle, budget: "", message: "", consent: false });
+  const [form, setForm] = useState<InquiryFormState>({ fullName: "", phone: "", email: "", type, city: initialCity, serviceArea: "", preferredVehicle: initialVehicle, budget: "", message: "", consent: false });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -69,7 +70,7 @@ export function InquiryForm({
   }
 
   if (result) {
-    const message = createContextMessage("purchase", { reference: result.reference, vehicle: form.preferredVehicle, location: form.city, budget: form.budget, fullName: form.fullName, phone: form.phone, message: form.message });
+    const message = createContextMessage("purchase", { reference: result.reference, vehicle: form.preferredVehicle, location: form.city, serviceArea: form.serviceArea, budget: form.budget, fullName: form.fullName, phone: form.phone, message: form.message });
     return (
       <section className="form-success" aria-live="polite">
         <span className="confirmation-mark"><CheckCircle2 size={26} aria-hidden="true" /></span>
@@ -106,10 +107,17 @@ export function InquiryForm({
           <input id="inquiry-email" type="email" autoComplete="email" value={form.email} onChange={(event) => update("email", event.target.value)} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "inquiry-email-error" : undefined} />
           <FieldError id="inquiry-email-error">{errors.email}</FieldError>
         </div>
-        <div className="form-field">
-          <label htmlFor="inquiry-city">Preferred city</label>
-          <select id="inquiry-city" value={form.city} onChange={(event) => update("city", event.target.value)}><option value="">No preference</option>{cityLabels.map((city) => <option key={city}>{city}</option>)}</select>
-        </div>
+        <ServiceAreaSelect
+          city={form.city as ServiceAreaCity}
+          onCityChange={(city) => update("city", city)}
+          area={form.serviceArea}
+          onAreaChange={(area) => update("serviceArea", area)}
+          cityId="inquiry-city"
+          areaId="inquiry-area"
+          cityLabel="Preferred city"
+          cityOptional
+          error={errors.serviceArea}
+        />
         <div className="form-field">
           <label htmlFor="inquiry-vehicle">Vehicle of interest <span className="optional">Optional</span></label>
           <input id="inquiry-vehicle" placeholder="Make, model, or vehicle class" value={form.preferredVehicle} onChange={(event) => update("preferredVehicle", event.target.value)} />

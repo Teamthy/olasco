@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MapPin } from "lucide-react";
 import { locationPages } from "@/content/locations";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { CityMap } from "@/components/city-map";
 import { PageHero } from "@/components/page-hero";
 import { LocationCard } from "@/components/location-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -24,6 +25,15 @@ export default function LocationsPage() {
         <div className="container">
           <SectionHeading eyebrow="CITY SERVICE AREAS" title="Choose the city your journey starts in." description="Use the city map to explore the wider area, then ask Olasco to confirm an exact meeting point for your dates." />
           <div className="location-grid"><LocationCard location={locationPages.lagos} /><LocationCard location={locationPages.abuja} /></div>
+        </div>
+      </section>
+      <section className="section section--sand">
+        <div className="container">
+          <SectionHeading eyebrow="CITY MAPS / LAGOS & ABUJA" title="See the ground before the journey." description="City-level maps of both service areas, with the major local government areas and districts listed on each city page. No unverified office pin is shown." />
+          <div className="location-grid">
+            <CityMap city="Lagos" mapsUrl={locationPages.lagos.mapsUrl} compact note="Lagos coverage is reviewed per pickup point across the 20 local government areas." />
+            <CityMap city="Abuja" mapsUrl={locationPages.abuja.mapsUrl} compact note="Abuja coverage is reviewed per pickup point across the FCT area councils and districts." />
+          </div>
         </div>
       </section>
       <section className="section section--sand">

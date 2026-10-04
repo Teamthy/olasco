@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, MapPin } from "lucide-react";
-import { cityLabels } from "@/config/business";
 import type { PickupServiceType } from "@/domain/types";
 import { ActionButton, FieldError } from "@/components/ui";
+import { ServiceAreaSelect } from "@/components/service-area-select";
 import { createContextMessage, createWhatsAppLink, type WhatsAppContext } from "@/lib/whatsapp";
 
 const serviceOptions: Array<{ value: PickupServiceType; label: string; context: WhatsAppContext }> = [
@@ -28,6 +28,7 @@ type PickupFormState = {
   email: string;
   serviceType: PickupServiceType;
   city: "Lagos" | "Abuja";
+  serviceArea: string;
   pickupDate: string;
   pickupTime: string;
   returnDate: string;
@@ -42,7 +43,7 @@ type PickupFormState = {
 export function PickupRequestForm({ initialCity = "Lagos", initialService = "AIRPORT_PICKUP" }: { initialCity?: string; initialService?: PickupServiceType }) {
   const [form, setForm] = useState<PickupFormState>({
     fullName: "", phone: "", email: "", serviceType: initialService,
-    city: initialCity === "Abuja" ? "Abuja" : "Lagos", pickupDate: "", pickupTime: "09:00", returnDate: "",
+    city: initialCity === "Abuja" ? "Abuja" : "Lagos", serviceArea: "", pickupDate: "", pickupTime: "09:00", returnDate: "",
     pickupAddress: "", destination: "", passengers: "1", luggage: "", specialRequest: "", consent: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -87,6 +88,7 @@ export function PickupRequestForm({ initialCity = "Lagos", initialService = "AIR
       reference: result.reference,
       service: serviceOptions.find((item) => item.value === form.serviceType)?.label,
       location: form.city,
+      serviceArea: form.serviceArea,
       pickupAddress: form.pickupAddress,
       destination: form.destination,
       pickupDate: form.pickupDate,
@@ -123,10 +125,17 @@ export function PickupRequestForm({ initialCity = "Lagos", initialService = "AIR
             {serviceOptions.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}
           </select>
         </div>
-        <div className="form-field">
-          <label htmlFor="pickup-city">City</label>
-          <select id="pickup-city" value={form.city} onChange={(event) => update("city", event.target.value as "Lagos" | "Abuja")}>{cityLabels.map((city) => <option key={city}>{city}</option>)}</select>
-        </div>
+        <ServiceAreaSelect
+          city={form.city}
+          onCityChange={(city) => update("city", city === "Abuja" ? "Abuja" : "Lagos")}
+          area={form.serviceArea}
+          onAreaChange={(area) => update("serviceArea", area)}
+          cityId="pickup-city"
+          areaId="pickup-area"
+          cityLabel="City"
+          areaOptional={false}
+          error={errors.serviceArea}
+        />
         <div className="form-field">
           <label htmlFor="pickup-date">Pickup date</label>
           <input id="pickup-date" type="date" min={localToday()} value={form.pickupDate} onChange={(event) => update("pickupDate", event.target.value)} aria-invalid={Boolean(errors.pickupDate)} aria-describedby={errors.pickupDate ? "pickup-date-error" : undefined} />
