@@ -18,6 +18,9 @@ const contentSecurityPolicy = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   allowedDevOrigins: ["*.e2b.app", "localhost", "127.0.0.1"],
+  outputFileTracingIncludes: {
+    "/*": ["./node_modules/.prisma/client/**/*", "./node_modules/@prisma/client/**/*"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     // Next 16 only serves qualities listed here; 90 keeps hero and vehicle

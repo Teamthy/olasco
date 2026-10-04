@@ -39,7 +39,7 @@ export default async function CarSlugPage({ params }: { params: Promise<Params> 
     const vehicles = await listVehicles({ mode: "sale", category: category.category });
     return (
       <>
-        <PageHero eyebrow={category.eyebrow} title={<>{category.title}</>} description={category.description} aside="No sample vehicle is shown as for sale. Only verified listings with current details and approved photos appear here." dark>
+        <PageHero eyebrow={category.eyebrow} title={<>{category.title}</>} description={category.description} image={category.image} imageAlt={category.imageAlt} aside="No sample vehicle is shown as for sale. Only verified listings with current details and approved photos appear here." dark>
           <div className="hero-actions page-hero-actions"><ButtonLink href="/cars/consultation">Ask for current options<ArrowUpRight size={15} aria-hidden="true" /></ButtonLink><WhatsAppLink context="purchase" details={{ vehicle: category.category }} variant="text" className="hero-secondary" icon="whatsapp">Talk to sales</WhatsAppLink></div>
         </PageHero>
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cars for sale", href: "/cars" }, { label: category.title }]} />

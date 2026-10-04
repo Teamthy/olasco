@@ -12,6 +12,10 @@ import { ButtonLink } from "@/components/ui";
 
 type Params = { city: string };
 
+export function generateStaticParams() {
+  return Object.keys(locationPages).map((city) => ({ city }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { city } = await params;
   const location = locationPages[city as keyof typeof locationPages];
